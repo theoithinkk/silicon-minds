@@ -1,17 +1,26 @@
 ---
-const { title, author, minutesRead, readingTime } = Astro.props.frontmatter ?? Astro.props;
+/* ExhibitLayout.astro
+* Do NOT modify this file, or any of the files in the layouts/ directory. Any
+* work by you must be added to:
+*
+* - the assets/ directory (for static assets such as images)
+* - the pages/ directory (for your main content page)
+* - the components/ directory (for your components)
+* - the styles/ directory (for any CSS, where applicable)
+* 
+* If you find yourself needing to modify something in this file, seek support
+* from your instructor.
+*/ 
+
+const { title, author, readingTime } = Astro.props.frontmatter ?? Astro.props;
 const { headings } = Astro.props; 
 
-// Font and Reset Imports
 import 'normalize.css';
-import '@fontsource-variable/montserrat';
 import '@fontsource-variable/lora';
 import '@fontsource-variable/noto-sans';
 
-// Import your custom global styles (adjust path based on your folder structure)
 import '../styles/global.css'; 
 
-// Component Imports
 import { Icon } from 'astro-icon/components';
 ---
 
@@ -30,7 +39,7 @@ import { Icon } from 'astro-icon/components';
                 <span class="header__subtitle">by {author}</span>
             </div>
 
-            <a href="/" class="button">
+            <a href="index.html" class="button">
                 <Icon name="ic:round-arrow-back" />
                 <span>Back to home</span>
             </a>
@@ -40,7 +49,7 @@ import { Icon } from 'astro-icon/components';
             <div class="content__block">
                 <div class="content__titlemeta">
                     <h1>{headings?.find(h => h.depth === 1)?.text || title}</h1>
-                    <span>by {author} ・ {minutesRead || readingTime || '5 minute read'}</span>
+                    <span>by {author} ・ {readingTime || '5 minute read'}</span>
                 </div>
 
                 <article class="article">

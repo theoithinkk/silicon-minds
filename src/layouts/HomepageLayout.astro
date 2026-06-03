@@ -1,23 +1,28 @@
 ---
+/* HomepageLayout.astro
+* Do NOT modify this file, or any of the files in the layouts/ directory. Any
+* work by you must be added to:
+*
+* - the assets/ directory (for static assets such as images)
+* - the pages/ directory (for your main content page)
+* - the components/ directory (for your components)
+* - the styles/ directory (for any CSS, where applicable)
+* 
+* If you find yourself needing to modify something in this file, seek support
+* from your instructor.
+*/ 
+
 const { title = "CSARCH2 Virtual Exhibit", author } = Astro.props.frontmatter ?? Astro.props;
 
-// 1. Fetch all MDX files from the pages folder
-// (Note: If you place this file directly in src/pages/index.astro instead of src/layouts/, change the path to './*.mdx')
 const allExhibits = await Astro.glob('../pages/*.mdx');
-
-// 2. Filter out the homepage (index.mdx) so it doesn't link to itself
 const exhibits = allExhibits.filter(exhibit => !exhibit.file.includes('index.mdx'));
 
-// Font and Reset Imports
 import 'normalize.css';
-import '@fontsource-variable/montserrat';
 import '@fontsource-variable/lora';
 import '@fontsource-variable/noto-sans';
 
-// Import your custom global styles
 import '../styles/global.css'; 
 
-// Component Imports
 import { Icon } from 'astro-icon/components';
 ---
 

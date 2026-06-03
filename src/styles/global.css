@@ -1,3 +1,9 @@
+/* global.css
+* Do NOT modify this file. Any new CSS by you must be created as a separate
+* file in the styles/ directory. If you find yourself needing to modify
+* something in this file, seek support from your instructor.
+*/ 
+
 :root {
     --accent: #e8828a;
     --bg1: #e2e2e2;
@@ -129,7 +135,7 @@ body {
     text-decoration-style: dotted;
 }
 
-.toc-item a:hover {
+.toc__item a:hover {
     text-decoration: underline;
 }
 
