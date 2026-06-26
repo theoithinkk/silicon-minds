@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silicon Minds — Desktop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0A0A0F;
+    color: #F0F0F5;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #00E5FF;
+    letter-spacing: 0.1em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: #F0F0F5;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+  }
+  .nav-links a.active { color: #F0F0F5; font-weight: 500; }
+  .enter-btn {
+    border: 1px solid #00E5FF;
+    color: #00E5FF;
+    background: transparent;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 48px 40px 40px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #141420;
+    border: 1px solid rgba(0,229,255,0.15);
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #8888A0;
+    margin-bottom: 24px;
+  }
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00E5FF;
+    flex-shrink: 0;
+  }
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  h1 .cyan { color: #00E5FF; }
+  .hero-desc {
+    font-size: 15px;
+    color: #8888A0;
+    line-height: 1.7;
+    max-width: 380px;
+    margin-bottom: 36px;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+  }
+  .btn-primary {
+    background: #00E5FF;
+    color: #0A0A0F;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: #F0F0F5;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* CHIP CARD */
+  .chip-card {
+    background: #141420;
+    border: 1px solid rgba(0,229,255,0.12);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+  }
+  .chip-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .chip-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00E5FF;
+  }
+  .chip-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #8888A0;
+  }
+  .trans-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #00E5FF;
+    background: rgba(0,229,255,0.08);
+    border: 1px solid rgba(0,229,255,0.2);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .chip-visual {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .chip-core {
+    background: #0A0A0F;
+    border: 1px solid rgba(0,229,255,0.3);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 88px;
+    min-height: 88px;
+  }
+  .chip-core-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #F0F0F5;
+  }
+  .chip-core-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #00E5FF;
+  }
+  .chip-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 20px);
+    gap: 5px;
+  }
+  .chip-block {
+    width: 20px;
+    height: 20px;
+    background: rgba(0,229,255,0.06);
+    border: 1px solid rgba(0,229,255,0.12);
+    border-radius: 2px;
+  }
+  .chip-block.on {
+    background: rgba(0,229,255,0.18);
+    border-color: rgba(0,229,255,0.35);
+  }
+  .chip-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 14px;
+  }
+  .chip-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #8888A0;
+  }
+  .chip-spec {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #8888A0;
+  }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin: 24px 0 64px;
+  }
+  .stat {
+    padding: 32px 40px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #F0F0F5;
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .stat-num.cyan { color: #00E5FF; }
+  .stat-label {
+    font-size: 13px;
+    color: #8888A0;
+    line-height: 1.5;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 0 40px 64px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .eyebrow-slash {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: #00E5FF;
+  }
+  .eyebrow-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #8888A0;
+    background: #141420;
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #F0F0F5;
+  }
+
+  /* TIMELINE */
+  .timeline-nodes {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    position: relative;
+    margin-bottom: 28px;
+  }
+  .timeline-nodes::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(to right, rgba(136,136,160,0.4) 45%, #00E5FF 55%, rgba(136,136,160,0.4) 65%);
+    z-index: 0;
+  }
+  .timeline-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .node-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: #141420;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #8888A0;
+  }
+  .node-circle.active {
+    background: #00E5FF;
+    border-color: #00E5FF;
+    color: #0A0A0F;
+    font-weight: 700;
+    box-shadow: 0 0 0 5px rgba(0,229,255,0.12);
+  }
+  .node-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #8888A0;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .node-label.active { color: #F0F0F5; }
+  .node-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #8888A0;
+    text-align: center;
+  }
+  .node-date.active { color: #00E5FF; }
+
+  /* ERA DETAIL */
+  .era-detail {
+    background: #141420;
+    border: 1px solid rgba(0,229,255,0.12);
+    border-radius: 8px;
+    padding: 28px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .era-spec-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #8888A0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .era-spec-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #F0F0F5;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+  .era-spec-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #8888A0;
+  }
+  .era-tag {
+    display: inline-block;
+    background: rgba(0,229,255,0.1);
+    border: 1px solid rgba(0,229,255,0.25);
+    color: #00E5FF;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 6px;
+  }
+  .era-notable {
+    font-size: 14px;
+    color: #F0F0F5;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  /* EXHIBITS */
+  .exhibits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .exhibit-card {
+    background: #141420;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 22px;
+  }
+  .exhibit-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #8888A0;
+    margin-bottom: 10px;
+  }
+  .exhibit-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  .tag-all { background: rgba(0,229,255,0.1); color: #00E5FF; border: 1px solid rgba(0,229,255,0.25); }
+  .tag-sim { background: rgba(123,97,255,0.12); color: #7B61FF; border: 1px solid rgba(123,97,255,0.3); }
+  .tag-cmp { background: rgba(0,229,255,0.1); color: #00E5FF; border: 1px solid rgba(0,229,255,0.25); }
+  .exhibit-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #F0F0F5;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .exhibit-desc {
+    font-size: 13px;
+    color: #8888A0;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">SILICON MINDS</span>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Home</a></li>
+    <li><a href="#">Explore</a></li>
+    <li><a href="#">Timeline</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <button class="enter-btn">Enter Exhibit</button>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="badge"><span class="badge-dot"></span> CSARCH2 — Term 3 AY 2025–2026</div>
+    <h1>Silicon Minds<br><span class="cyan">From Feature Phone<br>to AI Powerhouse</span></h1>
+    <p class="hero-desc">A virtual museum tracing five eras of mobile microprocessor architecture — from early RISC chips to today's AI-capable systems-on-chip.</p>
+    <div class="hero-btns">
+      <button class="btn-primary">Explore the Museum</button>
+      <button class="btn-secondary">View Timeline &nbsp;→</button>
+    </div>
+  </div>
+
+  <div class="chip-card">
+    <div class="chip-header">
+      <span class="chip-dot"></span>
+      <span class="chip-label">NPU Core</span>
+    </div>
+    <div class="trans-badge">19B trans.</div>
+    <div class="chip-visual">
+      <div class="chip-core">
+        <div class="chip-core-label">A17</div>
+        <div class="chip-core-sub">PRO</div>
+      </div>
+      <div class="chip-grid">
+        <div class="chip-block on"></div><div class="chip-block on"></div><div class="chip-block on"></div><div class="chip-block"></div>
+        <div class="chip-block on"></div><div class="chip-block"></div><div class="chip-block on"></div><div class="chip-block on"></div>
+        <div class="chip-block"></div><div class="chip-block on"></div><div class="chip-block on"></div><div class="chip-block"></div>
+        <div class="chip-block on"></div><div class="chip-block on"></div><div class="chip-block"></div><div class="chip-block on"></div>
+        <div class="chip-block"></div><div class="chip-block on"></div><div class="chip-block"></div><div class="chip-block on"></div>
+        <div class="chip-block on"></div><div class="chip-block"></div><div class="chip-block on"></div><div class="chip-block"></div>
+      </div>
+    </div>
+    <div class="chip-footer">
+      <span class="chip-name">Apple A17 Pro</span>
+      <span class="chip-spec">3nm SoC</span>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">5</div>
+    <div class="stat-label">Architectural eras of mobile silicon</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">30+</div>
+    <div class="stat-label">Processors examined across all eras</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Interactive exhibits to explore</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num cyan">1995<br>→ Now</div>
+    <div class="stat-label">Three decades of mobile evolution</div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-eyebrow">
+    <span class="eyebrow-slash">// </span>
+    <span class="eyebrow-num">01</span>
+    <span class="section-title">Five Eras of Evolution</span>
+  </div>
+
+  <div class="timeline-nodes">
+    <div class="timeline-node">
+      <div class="node-circle">01</div>
+      <div class="node-label">Birth of Mobile CPUs</div>
+      <div class="node-date">1990s–2002</div>
+    </div>
+    <div class="timeline-node">
+      <div class="node-circle">02</div>
+      <div class="node-label">ARM Revolution</div>
+      <div class="node-date">2007–2012</div>
+    </div>
+    <div class="timeline-node">
+      <div class="node-circle active">03</div>
+      <div class="node-label active">Multicore Era</div>
+      <div class="node-date active">2011–2014</div>
+    </div>
+    <div class="timeline-node">
+      <div class="node-circle">04</div>
+      <div class="node-label">System-on-Chip Era</div>
+      <div class="node-date">2015–2020</div>
+    </div>
+    <div class="timeline-node">
+      <div class="node-circle">05</div>
+      <div class="node-label">AI &amp; Efficiency Era</div>
+      <div class="node-date">2021–Present</div>
+    </div>
+  </div>
+
+  <div class="era-detail">
+    <div>
+      <div class="era-spec-label">Cores</div>
+      <div class="era-spec-value">2 cores</div>
+      <div class="era-tag">dual-core</div>
+    </div>
+    <div>
+      <div class="era-spec-label">Clock Speed</div>
+      <div class="era-spec-value">1.2 <span style="font-size:16px;">GHz</span></div>
+      <div class="era-spec-sub">28nm process</div>
+    </div>
+    <div>
+      <div class="era-spec-label">Die Size</div>
+      <div class="era-spec-value">57 <span style="font-size:14px;">mm²</span></div>
+      <div class="era-spec-sub">Cortex-A9 cores</div>
+    </div>
+    <div>
+      <div class="era-spec-label">Notable Feature</div>
+      <div class="era-notable">First mainstream dual-core mobile CPU — enabled true multitasking</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-eyebrow">
+    <span class="eyebrow-slash">// </span>
+    <span class="eyebrow-num">02</span>
+    <span class="section-title">Interactive Exhibits</span>
+  </div>
+
+  <div class="exhibits-grid">
+    <div class="exhibit-card">
+      <div class="exhibit-num">EXHIBIT 01</div>
+      <div class="exhibit-tag tag-all">All Eras</div>
+      <div class="exhibit-title">Mobile Microprocessor Trivia Quiz</div>
+      <div class="exhibit-desc">Test your knowledge across all five eras. Era-tagged questions with score breakdowns.</div>
+    </div>
+    <div class="exhibit-card">
+      <div class="exhibit-num">EXHIBIT 02</div>
+      <div class="exhibit-tag tag-sim">Simulation</div>
+      <div class="exhibit-title">Mobile Processor Evolution Simulator</div>
+      <div class="exhibit-desc">Run identical workloads across eras and watch performance differences in real time.</div>
+    </div>
+    <div class="exhibit-card">
+      <div class="exhibit-num">EXHIBIT 03</div>
+      <div class="exhibit-tag tag-cmp">Comparison</div>
+      <div class="exhibit-title">Microprocessor Timeline Explorer</div>
+      <div class="exhibit-desc">Trace transistor count, clock speed, and efficiency progression across eras.</div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
