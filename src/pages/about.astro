@@ -1,0 +1,362 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ChipFloat from '../components/ChipFloat.astro';
+
+const base = import.meta.env.BASE_URL;
+const ERA_COLORS = ['#22D3EE', '#34D399', '#F59E0B', '#A78BFA', '#F472B6'];
+---
+
+<BaseLayout title="About" description="About the Silicon Minds project — DLSU CSARCH2.">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+    <header class="mb-8">
+      <p class="font-mono text-primary text-sm tracking-widest uppercase mb-3">About This Exhibit</p>
+      <h1 class="font-heading font-bold text-4xl sm:text-5xl text-text-primary">Silicon Minds</h1>
+      <p class="text-text-secondary mt-3 text-lg">The Evolution of the Mobile Microprocessor</p>
+    </header>
+
+    <!-- Floating chip banner -->
+    <div class="mb-12" style="position:relative; display:flex; align-items:center; justify-content:center; gap:clamp(8px,5vw,64px); min-height:220px; overflow:visible;">
+      <div aria-hidden="true" style="position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 50% 50%, rgba(34,211,238,0.08), transparent 70%);"></div>
+      {ERA_COLORS.map((c, i) => (
+        <span style={`position:relative; opacity:${i === 2 ? 1 : 0.85}; ${i === 2 ? '' : 'margin-top:'+(i % 2 ? 28 : -28)+'px;'} filter:drop-shadow(0 14px 28px rgba(0,0,0,0.5));`} class={i < 1 || i > 3 ? 'hidden sm:inline-block' : ''}>
+          <ChipFloat color={c} size={i === 2 ? 150 : 110} rotate={i % 2 ? 14 : -14} traces={i === 2} variant={i + 1} delay={i * -0.8} />
+        </span>
+      ))}
+    </div>
+
+    <!-- Project context -->
+    <section aria-labelledby="project-heading" class="mb-12">
+      <h2 id="project-heading" class="font-heading font-bold text-2xl text-text-primary mb-4">Project Context</h2>
+      <div class="card">
+        <dl class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <dt class="font-mono text-xs text-text-secondary uppercase tracking-wider mb-1">Course</dt>
+            <dd class="text-text-primary font-body">CSARCH2 — Computer Architecture 2</dd>
+          </div>
+          <div>
+            <dt class="font-mono text-xs text-text-secondary uppercase tracking-wider mb-1">Institution</dt>
+            <dd class="text-text-primary font-body">De La Salle University, Manila</dd>
+          </div>
+          <div>
+            <dt class="font-mono text-xs text-text-secondary uppercase tracking-wider mb-1">Academic Year</dt>
+            <dd class="text-text-primary font-body">2025–2026, Term 3</dd>
+          </div>
+          <div>
+            <dt class="font-mono text-xs text-text-secondary uppercase tracking-wider mb-1">Project Type</dt>
+            <dd class="text-text-primary font-body">Interactive Museum Exhibit (Static Web App)</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- About the exhibit -->
+    <section aria-labelledby="exhibit-heading" class="mb-12">
+      <h2 id="exhibit-heading" class="font-heading font-bold text-2xl text-text-primary mb-4">About the Exhibit</h2>
+      <div class="prose prose-invert max-w-none space-y-4 text-text-secondary leading-relaxed">
+        <p>
+          <strong class="text-text-primary">Silicon Minds</strong> is an interactive digital museum exploring thirty years of mobile microprocessor
+          evolution — from the 8-bit ARM7TDMI inside a 1990s feature phone to the 19-billion-transistor Apple A17 Pro that
+          runs on-device AI inference in your pocket today.
+        </p>
+        <p>
+          The exhibit is organized into five historical eras, each defined by a distinct engineering tension: the power vs.
+          usability dilemma of feature-phone CPUs, the ISA efficiency battle that ARM won, the frequency wall that drove the
+          multicore revolution, the integration challenge of the System-on-Chip age, and the thermal and efficiency pressures
+          of dedicated AI accelerators.
+        </p>
+        <p>
+          Three interactive exhibits let visitors engage beyond reading: the <strong class="text-text-primary">Timeline Explorer</strong> lets
+          you compare any two processors spec-for-spec; the <strong class="text-text-primary">Evolution Simulator</strong> visualizes how
+          dramatically performance has grown across eras; and the <strong class="text-text-primary">Trivia Quiz</strong> tests retention
+          across all five chapters.
+        </p>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section aria-labelledby="team-heading" class="mb-12">
+      <h2 id="team-heading" class="font-heading font-bold text-2xl text-text-primary mb-1">The Team</h2>
+      <p class="text-text-secondary text-sm mb-6">Five members · CSARCH2 group project</p>
+
+      <p class="text-text-secondary text-xs mb-6 font-mono" style="letter-spacing:0.05em;">Hover a member to see their photo &amp; contributions</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {[
+          {
+            name: 'Theodore Garcia', role: 'UI/UX Designer & Frontend', color: '#22D3EE',
+            slug: 'theodore-garcia',
+            contributions: [
+              'Lorem ipsum dolor sit amet consectetur',
+              'Adipiscing elit sed do eiusmod tempor',
+              'Incididunt ut labore et dolore magna',
+              'Aliqua ut enim ad minim veniam',
+            ],
+          },
+          {
+            name: 'Maria Fides Bancoro', role: 'Content Research', color: '#34D399',
+            slug: 'maria-fides-bancoro',
+            contributions: [
+              'Lorem ipsum dolor sit amet consectetur',
+              'Adipiscing elit sed do eiusmod tempor',
+              'Incididunt ut labore et dolore magna',
+              'Aliqua ut enim ad minim veniam',
+            ],
+          },
+          {
+            name: 'Nathaniel Singh', role: 'Quiz Designer', color: '#F59E0B',
+            slug: 'nathaniel-singh',
+            contributions: [
+              'Lorem ipsum dolor sit amet consectetur',
+              'Adipiscing elit sed do eiusmod tempor',
+              'Incididunt ut labore et dolore magna',
+              'Aliqua ut enim ad minim veniam',
+            ],
+          },
+          {
+            name: 'Theon Schuyler Garcia', role: 'Content Research & Interactive Components', color: '#A78BFA',
+            slug: 'theon-schuyler-garcia',
+            contributions: [
+              'Lorem ipsum dolor sit amet consectetur',
+              'Adipiscing elit sed do eiusmod tempor',
+              'Incididunt ut labore et dolore magna',
+              'Aliqua ut enim ad minim veniam',
+            ],
+          },
+          {
+            name: 'Marc Jared Ercia', role: 'Cute Guy', color: '#F472B6',
+            slug: 'marc-jared-ercia',
+            contributions: [
+              'Lorem ipsum dolor sit amet consectetur',
+              'Adipiscing elit sed do eiusmod tempor',
+              'Incididunt ut labore et dolore magna',
+              'Aliqua ut enim ad minim veniam',
+            ],
+          },
+        ].map(member => (
+          <div
+            class="team-card"
+            tabindex="0"
+            aria-label={`${member.name} — ${member.role}`}
+            style={`--c:${member.color};`}
+          >
+            <!-- Default face -->
+            <div class="team-face">
+              <div class="flex items-center gap-3.5">
+                <div class="team-initials" aria-hidden="true">
+                  {member.name.split(' ').map(w => w[0]).join('').slice(0, 3)}
+                </div>
+                <p class="font-heading font-semibold text-text-primary leading-tight" style="font-size:17px;">{member.name}</p>
+              </div>
+              <span class="team-role-pill font-mono">{member.role}</span>
+            </div>
+
+            <!-- Hover / focus reveal — boots up like a screen -->
+            <div class="team-reveal">
+              <!-- Screen that powers on and loads the photo -->
+              <div class="team-screen">
+                <span class="team-screen-fallback" aria-hidden="true">
+                  {member.name.split(' ').map(w => w[0]).join('').slice(0, 3)}
+                  <small>NO SIGNAL</small>
+                </span>
+                <img class="team-photo" src={`${base}assets/team/${member.slug}.jpg`} alt={member.name} loading="lazy" onerror="if(this.dataset.png){this.remove()}else{this.dataset.png=1;this.src=this.src.replace(/\.jpg([?#].*)?$/i,'.png')}" />
+                <div class="team-scanlines" aria-hidden="true"></div>
+                <div class="team-scan" aria-hidden="true"></div>
+                <div class="team-boot font-mono" aria-hidden="true"><span class="team-boot-dot"></span>LOADING</div>
+              </div>
+
+              <!-- Meta -->
+              <div class="team-meta">
+                <p class="font-heading font-semibold text-text-primary leading-tight" style="font-size:16px;">{member.name}</p>
+                <span class="font-mono" style={`font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:${member.color};`}>{member.role}</span>
+              </div>
+
+              <ul class="team-contrib">
+                {member.contributions.map(c => (
+                  <li><span class="team-dot" aria-hidden="true"></span>{c}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Tech stack -->
+    <section aria-labelledby="tech-heading" class="mb-12">
+      <h2 id="tech-heading" class="font-heading font-bold text-2xl text-text-primary mb-4">Built With</h2>
+      <div class="card">
+        <ul class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm font-mono" role="list">
+          {['Astro 4', 'React 18', 'Tailwind CSS 3', 'Framer Motion', 'Lucide React', 'GitHub Pages'].map(tech => (
+            <li class="flex items-center gap-2 text-text-secondary">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary flex-none" aria-hidden="true"></span>
+              {tech}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<style>
+  .team-card {
+    position: relative;
+    min-height: 300px;
+    padding: 22px 20px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    border-top: 3px solid var(--c);
+    background: var(--bg-surface);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.25s var(--ease), box-shadow 0.25s ease, border-color 0.2s ease;
+  }
+  .team-card:hover,
+  .team-card:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 -2px 18px -6px var(--c), 0 12px 30px rgba(0,0,0,0.5);
+    outline: none;
+  }
+
+  /* Default face */
+  .team-face {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+    height: 100%;
+    min-height: 256px;
+  }
+  .team-initials {
+    display: flex; align-items: center; justify-content: center; flex: none;
+    width: 44px; height: 44px; border-radius: 12px;
+    font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 15px; letter-spacing: 0.04em;
+    background: color-mix(in srgb, var(--c) 10%, transparent);
+    color: var(--c);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 40%, transparent), 0 4px 12px color-mix(in srgb, var(--c) 12%, transparent);
+  }
+  .team-role-pill {
+    align-self: flex-start;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--c) 33%, transparent);
+    background: color-mix(in srgb, var(--c) 6%, transparent);
+    color: var(--c);
+  }
+
+  /* Hover reveal panel */
+  .team-reveal {
+    position: absolute; inset: 0;
+    padding: 16px;
+    display: flex; flex-direction: column; gap: 10px;
+    background: var(--bg-elevated);
+    border-radius: 11px;
+    border-top: 3px solid var(--c);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.18s var(--ease);
+  }
+  .team-card:hover .team-reveal,
+  .team-card:focus .team-reveal,
+  .team-card:focus-within .team-reveal {
+    opacity: 1; pointer-events: auto;
+  }
+
+  /* The "screen" */
+  .team-screen {
+    position: relative;
+    width: 100%; height: 124px;
+    border-radius: 8px; overflow: hidden;
+    background: #04060a;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 50%, transparent),
+                0 0 20px color-mix(in srgb, var(--c) 22%, transparent);
+    transform-origin: center;
+  }
+  .team-screen-fallback {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 24px;
+    color: var(--c); letter-spacing: 0.06em;
+  }
+  .team-screen-fallback small { font-size: 10px; font-weight: 400; letter-spacing: 0.3em; opacity: 0.55; }
+  .team-photo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .team-scanlines {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.35;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 2px, rgba(0,0,0,0.18) 3px);
+  }
+  .team-scan {
+    position: absolute; left: 0; right: 0; top: 0; height: 2px; opacity: 0;
+    background: linear-gradient(90deg, transparent, var(--c), transparent);
+    box-shadow: 0 0 10px var(--c);
+  }
+  .team-boot {
+    position: absolute; top: 7px; left: 8px;
+    display: flex; align-items: center; gap: 5px;
+    font-size: 10px; letter-spacing: 0.18em; color: var(--c); opacity: 0;
+  }
+  .team-boot-dot { width: 5px; height: 5px; border-radius: 999px; background: var(--c); box-shadow: 0 0 6px var(--c); }
+
+  /* Power-on + load animations (run while hovered/focused, motion allowed only) */
+  @media (prefers-reduced-motion: no-preference) {
+    .team-card:hover .team-screen,
+    .team-card:focus .team-screen,
+    .team-card:focus-within .team-screen { animation: screen-power 0.5s var(--ease) both; }
+
+    .team-card:hover .team-photo,
+    .team-card:focus .team-photo,
+    .team-card:focus-within .team-photo { animation: photo-load 0.75s 0.18s var(--ease) both; }
+
+    .team-card:hover .team-scan,
+    .team-card:focus .team-scan,
+    .team-card:focus-within .team-scan { animation: scan-down 0.75s 0.18s linear both; }
+
+    .team-card:hover .team-boot,
+    .team-card:focus .team-boot,
+    .team-card:focus-within .team-boot { animation: boot-fade 0.8s var(--ease) both; }
+  }
+
+  @keyframes screen-power {
+    0%   { transform: scaleY(0.03); filter: brightness(3.5); opacity: 0.3; }
+    28%  { transform: scaleY(0.03); filter: brightness(3.5); opacity: 1; }
+    52%  { transform: scaleY(1);    filter: brightness(1.8); }
+    100% { transform: scaleY(1);    filter: brightness(1); }
+  }
+  @keyframes photo-load {
+    0%   { clip-path: inset(0 0 100% 0); filter: blur(7px) brightness(0.35) saturate(0.4); }
+    55%  { filter: blur(2.5px) brightness(0.8) saturate(0.85); }
+    100% { clip-path: inset(0 0 0 0);   filter: blur(0) brightness(1) saturate(1); }
+  }
+  @keyframes scan-down {
+    0%   { top: 0;    opacity: 0; }
+    12%  { opacity: 1; }
+    88%  { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  @keyframes boot-fade {
+    0%   { opacity: 0; }
+    18%  { opacity: 1; }
+    68%  { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  /* Meta + contributions */
+  .team-meta { display: flex; flex-direction: column; gap: 3px; margin-top: 2px; }
+  .team-contrib { display: flex; flex-direction: column; gap: 5px; margin: 0; padding: 0; list-style: none; }
+  .team-contrib li {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 13.5px; line-height: 1.35; color: var(--text-secondary);
+  }
+  .team-dot {
+    flex: none; width: 5px; height: 5px; border-radius: 999px;
+    background: var(--c); margin-top: 5px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .team-card,
+    .team-reveal { transition: none; }
+  }
+</style>

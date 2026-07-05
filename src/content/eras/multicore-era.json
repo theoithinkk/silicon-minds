@@ -1,0 +1,9 @@
+{
+  "id": "multicore-era",
+  "name": "The Multicore Era",
+  "period": "2011 – 2014",
+  "order": 3,
+  "notableFeature": "Dual- and quad-core mobile processors",
+  "description": "With single-core clock speeds plateauing under thermal and power limits, chipmakers broke the wall horizontally: Nvidia's Tegra 2 put two ARM Cortex-A9 cores on a single die, and the industry followed. Users ran email in the background while streaming music and browsing the web, and a single core simply couldn't context-switch fast enough. The tension was software readiness: mobile OSes and apps had to be redesigned to exploit parallelism, and early quad-core chips often delivered only marginal real-world gains over fast dual-core designs.",
+  "accentColor": "#00E5FF"
+}

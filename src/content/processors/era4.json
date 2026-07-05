@@ -1,0 +1,74 @@
+[
+  {
+    "id": "apple-a9",
+    "name": "Apple A9",
+    "eraId": "system-on-chip-era",
+    "cores": 2,
+    "coreConfig": "2× Twister (64-bit ARMv8.1) + PowerVR GT7600",
+    "clockSpeedGHz": 1.85,
+    "dieSizeMm2": 104,
+    "transistorCount": "2B",
+    "processNodeNm": 16,
+    "notableFeature": "TSMC 16nm FinFET; 70% faster CPU than A8, 90% faster GPU"
+  },
+  {
+    "id": "snapdragon-820",
+    "name": "Qualcomm Snapdragon 820",
+    "eraId": "system-on-chip-era",
+    "cores": 4,
+    "coreConfig": "2× Kryo Gold + 2× Kryo Silver (ARMv8)",
+    "clockSpeedGHz": 2.15,
+    "dieSizeMm2": 72,
+    "transistorCount": "3B",
+    "processNodeNm": 14,
+    "notableFeature": "In-house Kryo CPU cores; Adreno 530 GPU set mobile graphics benchmark records"
+  },
+  {
+    "id": "exynos-8890",
+    "name": "Samsung Exynos 8890",
+    "eraId": "system-on-chip-era",
+    "cores": 8,
+    "coreConfig": "4× Mongoose M1 + 4× Cortex-A53 (big.LITTLE)",
+    "clockSpeedGHz": 2.6,
+    "dieSizeMm2": 95,
+    "transistorCount": "4B",
+    "processNodeNm": 14,
+    "notableFeature": "Samsung's first in-house CPU microarchitecture (Mongoose); used in Galaxy S7"
+  },
+  {
+    "id": "kirin-960",
+    "name": "HiSilicon Kirin 960",
+    "eraId": "system-on-chip-era",
+    "cores": 8,
+    "coreConfig": "4× Cortex-A73 + 4× Cortex-A53 (big.LITTLE)",
+    "clockSpeedGHz": 2.4,
+    "dieSizeMm2": 65,
+    "transistorCount": "3B",
+    "processNodeNm": 16,
+    "notableFeature": "First mobile SoC with Mali-G71 GPU; doubled Huawei's GPU performance"
+  },
+  {
+    "id": "apple-a10-fusion",
+    "name": "Apple A10 Fusion",
+    "eraId": "system-on-chip-era",
+    "cores": 4,
+    "coreConfig": "2× Hurricane (high-performance) + 2× Zephyr (efficiency)",
+    "clockSpeedGHz": 2.34,
+    "dieSizeMm2": 125,
+    "transistorCount": "3.3B",
+    "processNodeNm": 16,
+    "notableFeature": "First Apple chip with asymmetric core clusters; precursor to the P+E layout"
+  },
+  {
+    "id": "helio-x30",
+    "name": "MediaTek Helio X30",
+    "eraId": "system-on-chip-era",
+    "cores": 10,
+    "coreConfig": "2× Cortex-A73 + 4× Cortex-A53 + 4× Cortex-A35 (tri-cluster)",
+    "clockSpeedGHz": 2.5,
+    "dieSizeMm2": 89,
+    "transistorCount": "2.6B",
+    "processNodeNm": 10,
+    "notableFeature": "First mobile 10nm SoC; pioneered tri-cluster heterogeneous CPU layout"
+  }
+]

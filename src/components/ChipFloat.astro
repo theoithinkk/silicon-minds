@@ -1,0 +1,126 @@
+---
+// Floating, transparent SVG chip — looks like a real package with gold pins,
+// a metallic die, mounting holes, and circuit traces radiating out to "connect".
+// Vector so it stays crisp, floats (CSS), and ties into the page circuit field.
+export interface Props {
+  color?: string;       // era accent colour
+  size?: number;        // rendered px (square)
+  rotate?: number;      // tilt for the "floating diamond" feel
+  traces?: boolean;     // draw long radiating connector traces
+  variant?: number;     // 1-5, varies die markings
+  delay?: number;       // float animation offset (s)
+  label?: string;       // accessible label; omit -> decorative
+  class?: string;
+}
+const {
+  color = '#22D3EE',
+  size = 220,
+  rotate = -18,
+  traces = false,
+  variant = 1,
+  delay = 0,
+  label,
+  class: klass = '',
+} = Astro.props;
+
+// unique gradient ids per instance
+const uid = Math.random().toString(36).slice(2, 8);
+
+// pin positions (top-down chip, viewBox 0..200)
+const N = 11;
+const span = (i: number) => 50 + (i * 100) / (N - 1); // 50..150
+const pins = Array.from({ length: N }, (_, i) => span(i));
+
+// die "etch" lines vary by variant
+const etch = [
+  [78, 86, 122, 86],
+  [78, 100, 110, 100],
+  [78, 114, 118, 114],
+].slice(0, 1 + (variant % 3));
+---
+
+<span
+  class={`chip-wrap ${klass}`}
+  style={`display:inline-block; width:${size}px; height:${size}px; transform:rotate(${rotate}deg);`}
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+>
+  <span class="chip-bob" style={`display:block; width:100%; height:100%; animation-delay:${delay}s;`}>
+    <svg viewBox="0 0 200 200" width="100%" height="100%" style="overflow:visible; display:block;">
+      <defs>
+        <linearGradient id={`pin-${uid}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#7a5a1e"/>
+          <stop offset="45%" stop-color="#f3d690"/>
+          <stop offset="55%" stop-color="#f8e3a8"/>
+          <stop offset="100%" stop-color="#7a5a1e"/>
+        </linearGradient>
+        <linearGradient id={`sub-${uid}`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#13202b"/>
+          <stop offset="100%" stop-color="#0a0f16"/>
+        </linearGradient>
+        <linearGradient id={`die-${uid}`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color={color}/>
+          <stop offset="55%" stop-color={color} stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#0c1018"/>
+        </linearGradient>
+        <radialGradient id={`sheen-${uid}`} cx="0.32" cy="0.28" r="0.7">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.5"/>
+          <stop offset="45%" stop-color="#ffffff" stop-opacity="0.06"/>
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+        <filter id={`glow-${uid}`} x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="3.2" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- radiating connector traces -->
+      {traces && (
+        <g stroke={color} stroke-width="1.2" fill="none" opacity="0.5">
+          <path d="M100 24 V-26 M100 -26 h-26" />
+          <path d="M176 100 H236 M236 100 v22" />
+          <path d="M100 176 V232 M100 232 h30" />
+          <path d="M24 100 H-30 M-30 100 v-24" />
+          <g fill={color} stroke="none">
+            <circle cx="74" cy="-26" r="2.4"/><circle cx="236" cy="122" r="2.4"/>
+            <circle cx="130" cy="232" r="2.4"/><circle cx="-30" cy="76" r="2.4"/>
+          </g>
+          <!-- a pulse travelling outward -->
+          <circle r="2.6" fill={color} class="chip-pulse">
+            <animateMotion path="M100 24 V-26 h-26" dur="3.2s" begin={`${delay}s`} repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="3.2s" begin={`${delay}s`} repeatCount="indefinite"/>
+          </circle>
+        </g>
+      )}
+
+      <!-- pins (under substrate) -->
+      <g fill={`url(#pin-${uid})`}>
+        {pins.map(x => (<rect x={x - 2} y="24" width="4" height="16" rx="1.2"/>))}
+        {pins.map(x => (<rect x={x - 2} y="160" width="4" height="16" rx="1.2"/>))}
+        {pins.map(y => (<rect x="24" y={y - 2} width="16" height="4" rx="1.2"/>))}
+        {pins.map(y => (<rect x="160" y={y - 2} width="16" height="4" rx="1.2"/>))}
+      </g>
+
+      <!-- substrate (PCB) -->
+      <rect x="38" y="38" width="124" height="124" rx="9" fill={`url(#sub-${uid})`} stroke={color} stroke-opacity="0.28" stroke-width="1"/>
+
+      <!-- mounting holes -->
+      <g>
+        {[[52,52],[148,52],[52,148],[148,148]].map(([cx,cy]) => (
+          <g><circle cx={cx} cy={cy} r="4.6" fill="#05070b" stroke="#caa44e" stroke-width="1"/></g>
+        ))}
+      </g>
+
+      <!-- die -->
+      <g filter={`url(#glow-${uid})`}>
+        <rect x="70" y="70" width="60" height="60" rx="10" fill={`url(#die-${uid})`} stroke={color} stroke-opacity="0.6" stroke-width="1"/>
+        <rect x="70" y="70" width="60" height="60" rx="10" fill={`url(#sheen-${uid})`}/>
+        <g stroke={color} stroke-opacity="0.45" stroke-width="1">
+          {etch.map(([x1,y1,x2,y2]) => (<line x1={x1} y1={y1} x2={x2} y2={y2}/>))}
+        </g>
+        <circle cx="113" cy="117" r="2" fill={color}/>
+      </g>
+    </svg>
+  </span>
+</span>

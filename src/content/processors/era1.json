@@ -1,0 +1,74 @@
+[
+  {
+    "id": "arm7tdmi",
+    "name": "ARM7TDMI",
+    "eraId": "birth-of-mobile-cpus",
+    "cores": 1,
+    "coreConfig": "1× ARM7TDMI",
+    "clockSpeedGHz": 0.074,
+    "dieSizeMm2": 8,
+    "transistorCount": "74K",
+    "processNodeNm": 350,
+    "notableFeature": "Thumb 16-bit ISA halved code size for ROM-constrained devices"
+  },
+  {
+    "id": "strongarm-sa110",
+    "name": "Intel StrongARM SA-110",
+    "eraId": "birth-of-mobile-cpus",
+    "cores": 1,
+    "coreConfig": "1× StrongARM",
+    "clockSpeedGHz": 0.233,
+    "dieSizeMm2": 50,
+    "transistorCount": "2.5M",
+    "processNodeNm": 350,
+    "notableFeature": "First high-performance ARM for handheld PDAs; used in early iPAQs"
+  },
+  {
+    "id": "dragonball-ez",
+    "name": "Motorola DragonBall EZ",
+    "eraId": "birth-of-mobile-cpus",
+    "cores": 1,
+    "coreConfig": "1× 68000-derived",
+    "clockSpeedGHz": 0.016,
+    "dieSizeMm2": 28,
+    "transistorCount": "900K",
+    "processNodeNm": 500,
+    "notableFeature": "Powered the Palm Pilot; extreme low power at 16 MHz"
+  },
+  {
+    "id": "ti-omap1",
+    "name": "Texas Instruments OMAP1",
+    "eraId": "birth-of-mobile-cpus",
+    "cores": 1,
+    "coreConfig": "1× ARM925T + TI C55x DSP",
+    "clockSpeedGHz": 0.2,
+    "dieSizeMm2": 65,
+    "transistorCount": "15M",
+    "processNodeNm": 180,
+    "notableFeature": "First OMAP: paired ARM application core with dedicated DSP for voice/audio"
+  },
+  {
+    "id": "qualcomm-msm3100",
+    "name": "Qualcomm MSM3100",
+    "eraId": "birth-of-mobile-cpus",
+    "cores": 1,
+    "coreConfig": "1× ARM9 + baseband DSP",
+    "clockSpeedGHz": 0.128,
+    "dieSizeMm2": 40,
+    "transistorCount": "5M",
+    "processNodeNm": 250,
+    "notableFeature": "Integrated CDMA baseband, setting the template for Qualcomm's Snapdragon lineage"
+  },
+  {
+    "id": "xscale-pxa250",
+    "name": "Intel XScale PXA250",
+    "eraId": "birth-of-mobile-cpus",
+    "cores": 1,
+    "coreConfig": "1× XScale (ARMv5TE)",
+    "clockSpeedGHz": 0.4,
+    "dieSizeMm2": 72,
+    "transistorCount": "17M",
+    "processNodeNm": 180,
+    "notableFeature": "400 MHz at ~500 mW; backbone of Windows Mobile PDAs and early smartphones"
+  }
+]

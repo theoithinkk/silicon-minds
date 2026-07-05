@@ -1,0 +1,329 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ChipFloat from '../components/ChipFloat.astro';
+import { getCollection } from 'astro:content';
+
+const erasRaw = await getCollection('eras');
+const eras = erasRaw.map(e => e.data).sort((a, b) => a.order - b.order);
+const base = import.meta.env.BASE_URL;
+
+const ERA_COLORS: Record<string, string> = {
+  'birth-of-mobile-cpus': '#22D3EE',
+  'arm-revolution': '#34D399',
+  'multicore-era': '#F59E0B',
+  'system-on-chip-era': '#A78BFA',
+  'ai-efficiency-era': '#F472B6',
+};
+
+const stats = [
+  { value: 5,  suffix: '',  label: 'Eras of Innovation', icon: 'layers' },
+  { value: 30, suffix: '+', label: 'Processors Documented', icon: 'cpu' },
+  { value: 30, suffix: '',  label: 'Years of History', icon: 'clock' },
+  { value: 3,  suffix: '',  label: 'Interactive Exhibits', icon: 'zap' },
+];
+---
+
+<BaseLayout title="Home" description="Silicon Minds: An interactive journey through the evolution of the mobile microprocessor.">
+
+  <!-- ── Hero ──────────────────────────────────────────────── -->
+  <section
+    class="relative flex flex-col items-center justify-center text-center px-5 overflow-hidden"
+    style="min-height: 92vh;"
+    aria-labelledby="hero-heading"
+  >
+    <!-- Atmospheric layers -->
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+      <!-- centered spotlight -->
+      <div style="position:absolute; inset:0; background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(0,229,255,0.07) 0%, transparent 70%);"></div>
+      <!-- era-colored orbs -->
+      <div class="animate-pulse-slow" style="position:absolute; width:620px; height:460px; top:50%; left:50%; transform:translate(-58%,-62%); background:radial-gradient(ellipse, rgba(34,211,238,0.06) 0%, transparent 70%); border-radius:50%;"></div>
+      <div class="animate-pulse-slow delay-400" style="position:absolute; width:520px; height:420px; top:50%; left:50%; transform:translate(8%,-28%); background:radial-gradient(ellipse, rgba(167,139,250,0.055) 0%, transparent 70%); border-radius:50%;"></div>
+      <!-- scan line at 40% -->
+      <div class="animate-scan" style="position:absolute; top:40%; left:0; right:0; height:1px; background:linear-gradient(to right, transparent, rgba(0,229,255,0.5), transparent);"></div>
+
+      <!-- floating chips -->
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="rgba(34,211,238,0.35)" stroke-width="1" style="position:absolute; top:18%; left:14%; animation: drift-1 14s ease-in-out infinite alternate;">
+        <rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5"/>
+      </svg>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.3)" stroke-width="1" style="position:absolute; top:26%; right:16%; animation: drift-2 18s ease-in-out infinite alternate;">
+        <rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5"/>
+      </svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(244,114,182,0.28)" stroke-width="1" style="position:absolute; bottom:22%; left:22%; animation: drift-1 22s ease-in-out infinite alternate;">
+        <rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5"/>
+      </svg>
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="rgba(52,211,153,0.26)" stroke-width="1" style="position:absolute; bottom:28%; right:20%; animation: drift-2 16s ease-in-out infinite alternate;">
+        <rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5"/>
+      </svg>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-4xl mx-auto">
+      <div class="animate-fade-up flex justify-center" style="animation-delay:40ms; animation-fill-mode:both;">
+        <span style="filter:drop-shadow(0 18px 36px rgba(0,0,0,0.6)); margin-bottom:18px;">
+          <ChipFloat color="#22D3EE" size={138} rotate={-14} traces={true} variant={1} label="Microprocessor" />
+        </span>
+      </div>
+      <div class="animate-fade-up" style="animation-delay:120ms; animation-fill-mode:both;">
+        <span class="section-label mb-6 inline-flex items-center">
+          Interactive Museum Exhibit<span class="animate-blink" style="margin-left:2px;">|</span>
+        </span>
+      </div>
+
+      <h1
+        id="hero-heading"
+        class="animate-fade-up delay-200 font-heading font-bold mb-5"
+        style="font-size:clamp(3rem,9vw,7rem); letter-spacing:-0.03em; line-height:1.0;"
+      >
+        Silicon<br />
+        <span class="text-gradient" style="position:relative; display:inline-block;">
+          Minds
+          <span aria-hidden="true" class="animate-sweep" style="position:absolute; left:0; right:0; bottom:-6px; height:3px; border-radius:99px; background:linear-gradient(to right, #22D3EE, #A78BFA);"></span>
+        </span>
+      </h1>
+
+      <p
+        class="animate-fade-up delay-400 mb-10 mx-auto"
+        style="font-size:clamp(1rem,2.5vw,1.25rem); max-width:480px; line-height:1.65; color:var(--text-secondary);"
+      >
+        From Feature Phone to AI Powerhouse —<br class="hidden sm:block" />
+        the story of the mobile microprocessor.
+      </p>
+
+      <div class="animate-fade-up delay-600 flex flex-row flex-wrap items-center justify-center gap-3">
+        <a href={`${base}explore`} class="btn-primary" style="font-size:17px; padding:13px 28px;">
+          Enter Exhibit
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href={`${base}timeline`} class="btn-ghost" style="font-size:17px; padding:13px 28px;">
+          View Timeline
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in delay-800" aria-hidden="true" style="opacity:0.4;">
+      <span class="font-mono uppercase" style="font-size:12px; letter-spacing:0.25em; color:var(--text-secondary);">Scroll</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="animate-float" style="color:var(--text-secondary);"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- ── Stats strip ───────────────────────────────────────── -->
+  <section
+    aria-label="Key statistics"
+    style="position:relative; border-bottom:1px solid var(--border-subtle); background:rgba(15,15,28,0.5);"
+  >
+    <!-- lit top edge -->
+    <div aria-hidden="true" style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(to right, transparent, var(--ui-primary) 30%, var(--ui-primary) 70%, transparent); opacity:0.5;"></div>
+
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      {stats.map((stat, i) => (
+        <div class={`reveal reveal-delay-${i + 1} flex flex-col items-center gap-2`}>
+          <span style="color:var(--ui-primary); opacity:0.55;" aria-hidden="true">
+            {stat.icon === 'layers' && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>}
+            {stat.icon === 'cpu' && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>}
+            {stat.icon === 'clock' && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>}
+            {stat.icon === 'zap' && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>}
+          </span>
+          <span
+            class="font-mono font-bold tabular"
+            style="font-size:clamp(3rem,8vw,5rem); line-height:1; color:var(--ui-primary); text-shadow:0 0 28px rgba(0,229,255,0.35);"
+            data-count-to={stat.value}
+            data-count-suffix={stat.suffix}
+          >
+            {stat.value}{stat.suffix}
+          </span>
+          <span style="color:var(--text-secondary); font-size:15px;">{stat.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── Five eras ─────────────────────────────────────────── -->
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 py-24">
+    <header class="mb-12 reveal">
+      <span class="section-label mb-3">The Collection</span>
+      <h2 class="font-heading font-bold" style="font-size:clamp(1.75rem,4vw,3rem); color:var(--text-primary);">
+        Five Chapters in Mobile Silicon
+      </h2>
+      <p style="color:var(--text-secondary); margin-top:8px; max-width:440px; font-size:17px;">
+        Each era forced by a real engineering tension. Click any card to explore.
+      </p>
+    </header>
+
+    <div
+      class="flex gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-5 md:overflow-visible md:pb-0 snap-x snap-mandatory md:snap-none"
+      style="scrollbar-width:none;"
+    >
+      {eras.map((era, i) => {
+        const c = ERA_COLORS[era.id];
+        return (
+          <a
+            href={`${base}explore#${era.id}`}
+            class={`era-card card-interactive flex-none w-[220px] md:w-auto snap-start flex flex-col group reveal reveal-delay-${Math.min(i + 1, 5)} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary`}
+            aria-label={`Era ${era.order}: ${era.name}, ${era.period}`}
+            style={`--c:${c}; border-top:3px solid ${c}; padding:0; overflow:hidden;`}
+          >
+            <!-- Floating chip header -->
+            <div style={`position:relative; height:140px; display:flex; align-items:center; justify-content:center; overflow:visible; background:radial-gradient(ellipse 60% 70% at 50% 45%, ${c}14, transparent 70%);`}>
+              <span aria-hidden="true" class="font-heading font-bold" style={`position:absolute; top:8px; right:14px; font-size:50px; line-height:1; color:${c}; opacity:0.1;`}>
+                {String(era.order).padStart(2, '0')}
+              </span>
+              <span class="era-chip" style="filter:drop-shadow(0 12px 22px rgba(0,0,0,0.55));">
+                <ChipFloat color={c} size={120} rotate={-16} variant={era.order} delay={i * -0.7} />
+              </span>
+            </div>
+
+            <!-- Content -->
+            <div class="flex flex-col gap-2.5" style="padding:18px;">
+              <h3 class="era-card-title font-heading font-bold transition-colors duration-200" style="font-size:18px; line-height:1.25; letter-spacing:-0.01em; color:var(--text-primary);">
+                {era.name}
+              </h3>
+              <span class="pill self-start">{era.period}</span>
+              <p style="color:var(--text-secondary); font-size:14px; line-height:1.6;">
+                {era.notableFeature}
+              </p>
+              <span class="inline-flex items-center gap-1 font-mono" style={`font-size:12px; letter-spacing:0.1em; color:${c}; margin-top:2px;`}>
+                EXPLORE
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={c} stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- ── Featured full-bleed band ──────────────────────────── -->
+  <section
+    aria-label="Inside the silicon"
+    class="relative reveal"
+    style="min-height:440px; display:flex; align-items:center; overflow:hidden; border-top:1px solid var(--border-subtle); border-bottom:1px solid var(--border-subtle);"
+  >
+    <!-- giant floating chip, bleeding off the right edge -->
+    <div aria-hidden="true" class="hidden md:block" style="position:absolute; right:-40px; top:50%; transform:translateY(-50%); opacity:0.9;">
+      <div style="position:absolute; inset:-80px; background:radial-gradient(ellipse, rgba(167,139,250,0.16), transparent 65%); border-radius:50%;"></div>
+      <span style="position:relative; filter:drop-shadow(0 24px 50px rgba(0,0,0,0.6));">
+        <ChipFloat color="#A78BFA" size={420} rotate={-22} traces={true} variant={4} delay={-1.4} />
+      </span>
+    </div>
+    <div aria-hidden="true" style="position:absolute; inset:0; background:linear-gradient(110deg, var(--bg-base) 18%, rgba(8,8,16,0.55) 55%, transparent);"></div>
+
+    <div class="relative max-w-7xl mx-auto px-5 sm:px-8 w-full">
+      <div style="max-width:560px;">
+        <span class="section-label mb-4">Zoom In</span>
+        <p class="font-heading font-bold" style="font-size:clamp(1.5rem,4vw,2.75rem); line-height:1.15; letter-spacing:-0.02em; color:var(--text-primary);">
+          Billions of transistors,<br />etched in silicon a<br />few atoms wide.
+        </p>
+        <p style="color:var(--text-secondary); margin-top:16px; font-size:17px; max-width:42ch; line-height:1.7;">
+          Every era in this exhibit is a story of constraint — squeezing more computation
+          out of less power, less space, and ever-smaller process nodes.
+        </p>
+        <div class="flex flex-wrap gap-8" style="margin-top:28px;">
+          <div>
+            <p class="font-mono font-bold tabular" style="font-size:30px; color:var(--ui-primary);">3 nm</p>
+            <p class="font-mono" style="font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-secondary); margin-top:2px;">Latest node</p>
+          </div>
+          <div>
+            <p class="font-mono font-bold tabular" style="font-size:30px; color:#F472B6;">19 B</p>
+            <p class="font-mono" style="font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-secondary); margin-top:2px;">Transistors (A17 Pro)</p>
+          </div>
+          <div>
+            <p class="font-mono font-bold tabular" style="font-size:30px; color:#A78BFA;">~190k×</p>
+            <p class="font-mono" style="font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-secondary); margin-top:2px;">Transistor growth</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Interactive exhibits (bento) ──────────────────────── -->
+  <section style="border-top:1px solid var(--border-subtle); background:rgba(15,15,28,0.35);">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-24">
+      <header class="mb-14 text-center reveal">
+        <span class="section-label mb-3">Interactive Exhibits</span>
+        <h2 class="font-heading font-bold" style="font-size:clamp(1.75rem,4vw,3rem); color:var(--text-primary);">
+          Three Ways to Explore
+        </h2>
+        <p style="color:var(--text-secondary); margin-top:8px; font-size:17px;">
+          Five decades of mobile silicon, rendered interactive.
+        </p>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+        <!-- Timeline — spans 2 cols -->
+        <div class="card relative md:col-span-2 flex flex-col gap-5 reveal reveal-delay-1" style="background:linear-gradient(135deg, rgba(0,229,255,0.03), transparent 60%);">
+          <span class="pill" style="position:absolute; top:18px; right:18px; color:var(--ui-primary); border-color:rgba(0,229,255,0.25);">
+            <span style="width:5px; height:5px; border-radius:99px; background:var(--ui-primary); display:inline-block;"></span>LIVE
+          </span>
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-none" style="background:rgba(0,229,255,0.08); border:1px solid rgba(0,229,255,0.14);" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><line x1="2" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="22" y2="12"/><circle cx="5" cy="12" r="1.5" fill="#00E5FF" stroke="none"/><circle cx="19" cy="12" r="1.5" fill="#00E5FF" stroke="none"/></svg>
+          </div>
+          <div class="flex flex-col gap-2 flex-1">
+            <h3 class="font-heading font-bold" style="font-size:19px; color:var(--text-primary);">Timeline Explorer</h3>
+            <p style="color:var(--text-secondary); font-size:15.5px; line-height:1.65; max-width:46ch;">
+              Click any processor node to inspect its full specs. Select two to compare side-by-side, with relative spec bars and a 2024 performance benchmark. Filter by era.
+            </p>
+          </div>
+          <a href={`${base}timeline`} class="btn-primary self-start" style="font-size:15px; padding:8px 18px;">Explore →</a>
+        </div>
+
+        <!-- Simulator -->
+        <div class="card relative flex flex-col gap-5 reveal reveal-delay-2" style="background:linear-gradient(135deg, rgba(123,97,255,0.03), transparent 60%);">
+          <span class="pill" style="position:absolute; top:18px; right:18px; color:var(--ui-secondary); border-color:rgba(123,97,255,0.25);">
+            <span style="width:5px; height:5px; border-radius:99px; background:var(--ui-secondary); display:inline-block;"></span>INTERACTIVE
+          </span>
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-none" style="background:rgba(123,97,255,0.08); border:1px solid rgba(123,97,255,0.14);" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7B61FF" stroke-width="1.8" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div class="flex flex-col gap-2 flex-1">
+            <h3 class="font-heading font-bold" style="font-size:19px; color:var(--text-primary);">Evolution Simulator</h3>
+            <p style="color:var(--text-secondary); font-size:15.5px; line-height:1.65;">
+              Pick two eras and watch a workload race across generations.
+            </p>
+          </div>
+          <a href={`${base}explore#simulator`} class="btn-secondary self-start" style="font-size:15px; padding:8px 18px;">Simulate →</a>
+        </div>
+
+        <!-- Quiz -->
+        <div class="card relative flex flex-col gap-5 reveal reveal-delay-3" style="background:linear-gradient(135deg, rgba(244,114,182,0.03), transparent 60%);">
+          <span class="pill" style="position:absolute; top:18px; right:18px; color:#F472B6; border-color:rgba(244,114,182,0.25);">
+            <span style="width:5px; height:5px; border-radius:99px; background:#F472B6; display:inline-block;"></span>INTERACTIVE
+          </span>
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-none" style="background:rgba(244,114,182,0.08); border:1px solid rgba(244,114,182,0.16);" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r="0.5" fill="#F472B6"/></svg>
+          </div>
+          <div class="flex flex-col gap-2 flex-1">
+            <h3 class="font-heading font-bold" style="font-size:19px; color:var(--text-primary);">Trivia Quiz</h3>
+            <p style="color:var(--text-secondary); font-size:15.5px; line-height:1.65;">
+              15 questions from all five eras. Per-era scoring shows where to study up.
+            </p>
+          </div>
+          <a href={`${base}explore#quiz`} class="btn-primary self-start" style="font-size:15px; padding:8px 18px;">Start Quiz →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* Hide era-strip scrollbar */
+  .flex.overflow-x-auto::-webkit-scrollbar { height: 0; display: none; }
+
+  /* Era card hover: tint bg + lift the top border glow + zoom image */
+  .era-card:hover {
+    border-color: color-mix(in srgb, var(--c) 30%, transparent);
+    box-shadow: 0 -2px 18px -4px var(--c), 0 10px 36px rgba(0,0,0,0.5);
+  }
+  .era-card:hover .era-card-title { color: var(--c); }
+  .era-chip { display: inline-block; transition: transform 320ms var(--ease); }
+  .era-card:hover .era-chip { transform: scale(1.08); }
+
+  /* CTAs stack only on very narrow screens */
+  @media (max-width: 360px) {
+    section[aria-labelledby="hero-heading"] .flex-row { flex-direction: column; width: 100%; }
+    section[aria-labelledby="hero-heading"] .flex-row > a { width: 100%; justify-content: center; }
+  }
+</style>

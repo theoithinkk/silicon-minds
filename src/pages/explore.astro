@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ChipFloat from '../components/ChipFloat.astro';
+import { getCollection } from 'astro:content';
+import EvolutionSimulator from '../components/EvolutionSimulator';
+import TriviaQuiz from '../components/TriviaQuiz';
+
+const erasRaw = await getCollection('eras');
+const eras = erasRaw.map(e => e.data).sort((a, b) => a.order - b.order);
+
+const processorsRaw = await getCollection('processors');
+const allProcessors = processorsRaw.flatMap(e => e.data);
+
+const quizRaw = await getCollection('quiz');
+const questions = quizRaw[0].data.questions;
+
+const base = import.meta.env.BASE_URL;
+
+const ERA_COLORS: Record<string, string> = {
+  'birth-of-mobile-cpus': '#22D3EE',
+  'arm-revolution': '#34D399',
+  'multicore-era': '#F59E0B',
+  'system-on-chip-era': '#A78BFA',
+  'ai-efficiency-era': '#F472B6',
+};
+
+const ERA_CAPTIONS: Record<string, string> = {
+  'birth-of-mobile-cpus': 'Low-power RISC core — single-digit MHz, milliwatt budget',
+  'arm-revolution':       'ARM application processor — the smartphone workhorse',
+  'multicore-era':        'Quad-core mobile SoC — parallelism arrives on phones',
+  'system-on-chip-era':   'Integrated SoC — CPU, GPU, modem & ISP on one die',
+  'ai-efficiency-era':    'AI-class system-on-chip — dedicated NPU on a 3–4 nm node',
+};
+---
+
+<BaseLayout title="Explore" description="Explore all five eras of mobile microprocessor history.">
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-20">
+
+    <!-- Page header -->
+    <header class="mb-16">
+      <span class="section-label mb-3">Museum Floor</span>
+      <h1 class="font-heading font-bold mb-4" style="font-size:clamp(2rem,5vw,3.25rem); color:var(--text-primary);">
+        Explore the Eras
+      </h1>
+      <p style="color:var(--text-secondary); max-width:42rem; font-size:17px; line-height:1.7;">
+        Five chapters in mobile silicon history, each shaped by a distinct engineering tension.
+        Scroll through, or jump directly to an era.
+      </p>
+
+      <nav aria-label="Jump to era" class="flex flex-wrap gap-2 mt-6">
+        {eras.map(era => {
+          const c = ERA_COLORS[era.id];
+          return (
+            <a
+              href={`#${era.id}`}
+              class="font-mono uppercase transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              style={`font-size:12px; letter-spacing:0.15em; padding:5px 11px; border-radius:4px; border:1px solid ${c}30; background:${c}0d; color:${c};`}
+            >
+              Era {era.order}: {era.name}
+            </a>
+          );
+        })}
+      </nav>
+    </header>
+
+    <!-- Era sections with connecting spine -->
+    <div style="position:relative;">
+      <!-- vertical connector spine (desktop) -->
+      <div aria-hidden="true" class="hidden sm:block" style="position:absolute; left:11px; top:8px; bottom:120px; width:1px; background:linear-gradient(to bottom, #22D3EE40, #34D39940, #F59E0B40, #A78BFA40, #F472B640); opacity:0.5;"></div>
+
+      {eras.map((era, idx) => {
+        const eraProcessors = allProcessors.filter(p => p.eraId === era.id);
+        const c = ERA_COLORS[era.id];
+        return (
+          <section id={era.id} aria-labelledby={`heading-${era.id}`} class={`mb-24 scroll-mt-20 ${idx > 0 ? 'reveal' : ''}`}>
+
+            <!-- Era header row -->
+            <div class="flex items-start gap-6 mb-8">
+              <!-- Accent node + bar -->
+              <div class="hidden sm:flex flex-col items-center flex-none" style="width:24px; padding-top:6px;">
+                <span style={`width:13px; height:13px; border-radius:99px; background:${c}; box-shadow:0 0 14px ${c}; flex:none;`} aria-hidden="true"></span>
+                <span style={`width:2px; flex:1; min-height:60px; margin-top:6px; background:linear-gradient(to bottom, ${c}, transparent); border-radius:99px;`} aria-hidden="true"></span>
+              </div>
+
+              <div class="flex-1" style={`padding-left:14px; border-radius:8px; background:linear-gradient(to right, ${c}0d, transparent 55%);`}>
+                <div class="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+                  <!-- Text -->
+                  <div>
+                    <div class="flex flex-wrap items-center gap-3 mb-2">
+                      <span class="font-mono uppercase" style={`font-size:12px; letter-spacing:0.18em; padding:3px 10px; border-radius:4px; border:1px solid ${c}40; background:${c}12; color:${c};`}>
+                        Era {era.order} of 5
+                      </span>
+                      <span class="font-mono" style="font-size:13px; letter-spacing:0.08em; color:var(--text-secondary);">{era.period}</span>
+                    </div>
+                    <h2 id={`heading-${era.id}`} class="font-heading font-bold mb-3" style="font-size:clamp(1.5rem,3.5vw,2.25rem); color:var(--text-primary);">
+                      {era.name}
+                    </h2>
+                    <p style="color:var(--text-secondary); font-size:17px; line-height:1.75;">
+                      {era.description}
+                    </p>
+                  </div>
+
+                  <!-- Floating chip (alternates side on desktop) -->
+                  <figure class={`era-figure ${idx % 2 === 1 ? 'lg:order-first' : ''}`} style="margin:0; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:280px; position:relative;">
+                    <div aria-hidden="true" style={`position:absolute; inset:0; background:radial-gradient(ellipse 55% 55% at 50% 45%, ${c}1f, transparent 70%);`}></div>
+                    <ChipFloat color={c} size={260} rotate={idx % 2 === 1 ? 16 : -16} traces={true} variant={era.order} delay={idx * -0.9} label={`${era.name} processor`} />
+                    <figcaption class="font-mono" style="margin-top:10px; font-size:13px; letter-spacing:0.05em; color:var(--text-secondary); text-align:center; max-width:34ch; position:relative;">
+                      {ERA_CAPTIONS[era.id]}
+                    </figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+
+            <!-- Processor cards -->
+            <div class="mb-8 sm:pl-[44px]">
+              <h3 class="font-heading font-semibold mb-4" style="font-size:17px; color:var(--text-primary);">Key Processors</h3>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" role="list">
+                {eraProcessors.map(proc => (
+                  <li>
+                    <a
+                      href={`${base}timeline#${proc.id}`}
+                      class="proc-card group flex flex-col gap-2 p-4 rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      style={`--c:${c}; border:1px solid var(--border-subtle); background:var(--bg-surface);`}
+                      aria-label={`View ${proc.name} in timeline`}
+                    >
+                      <div class="flex items-center gap-2">
+                        <span class="pill">{proc.processNodeNm}nm</span>
+                        <span class="font-mono" style="font-size:12px; color:var(--text-secondary);">{proc.cores} core{proc.cores > 1 ? 's' : ''}</span>
+                      </div>
+                      <span class="proc-name font-heading font-semibold transition-colors duration-150 flex items-center gap-2" style="font-size:16px; color:var(--text-primary);">
+                        <span style={`width:5px; height:5px; border-radius:99px; background:${c}; flex:none;`} aria-hidden="true"></span>
+                        {proc.name}
+                      </span>
+                      <span style="color:var(--text-secondary); font-size:14px; line-height:1.55;">{proc.notableFeature}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="sm:pl-[44px]">
+              <a href={`${base}timeline?era=${era.id}`} class="btn-primary" style="font-size:15px; padding:8px 18px;">
+                View in Timeline →
+              </a>
+            </div>
+          </section>
+        );
+      })}
+    </div>
+
+    <!-- Evolution Simulator -->
+    <section id="simulator" aria-labelledby="simulator-heading" class="mb-24 scroll-mt-20 reveal">
+      <header class="mb-10">
+        <span class="section-label mb-3" style="color:var(--ui-secondary);">Interactive Exhibit</span>
+        <h2 id="simulator-heading" class="font-heading font-bold mb-3" style="font-size:clamp(1.75rem,4vw,2.5rem); color:var(--text-primary);">
+          Evolution Simulator
+        </h2>
+        <p style="color:var(--text-secondary); max-width:36rem; font-size:17px;">
+          Select two or more eras and run a simulated workload race across generations.
+        </p>
+      </header>
+      <div class="card" style="border-color:rgba(123,97,255,0.12);">
+        <EvolutionSimulator client:load eras={eras} />
+      </div>
+    </section>
+
+    <div style="height:1px; background:linear-gradient(to right, transparent, var(--border-mid) 20%, var(--border-mid) 80%, transparent); margin-bottom:96px;" aria-hidden="true"></div>
+
+    <!-- Trivia Quiz -->
+    <section id="quiz" aria-labelledby="quiz-heading" class="scroll-mt-20 reveal">
+      <header class="mb-10">
+        <span class="section-label mb-3" style="color:#F472B6;">Interactive Exhibit</span>
+        <h2 id="quiz-heading" class="font-heading font-bold mb-3" style="font-size:clamp(1.75rem,4vw,2.5rem); color:var(--text-primary);">
+          Trivia Quiz
+        </h2>
+        <p style="color:var(--text-secondary); max-width:36rem; font-size:17px;">
+          15 questions drawn from all five eras. Per-era scoring shows where to go deeper.
+        </p>
+      </header>
+      <div class="card">
+        <TriviaQuiz client:load questions={questions} eras={eras} />
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<style>
+  .proc-card:hover {
+    border-color: color-mix(in srgb, var(--c) 35%, transparent);
+    background: color-mix(in srgb, var(--c) 4%, var(--bg-surface));
+  }
+  .proc-card:hover .proc-name { color: var(--c); }
+</style>

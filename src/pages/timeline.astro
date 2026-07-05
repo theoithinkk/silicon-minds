@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import TimelineExplorer from '../components/TimelineExplorer';
+
+const erasRaw = await getCollection('eras');
+const eras = erasRaw.map(e => e.data).sort((a, b) => a.order - b.order);
+
+const processorsRaw = await getCollection('processors');
+const allProcessors = processorsRaw.flatMap(e => e.data);
+---
+
+<BaseLayout title="Timeline" description="Interactive timeline of mobile microprocessor evolution.">
+  <!-- ambient orbs -->
+  <div aria-hidden="true" class="pointer-events-none" style="position:fixed; inset:0; z-index:-5; overflow:hidden;">
+    <div class="animate-pulse-slow" style="position:absolute; width:500px; height:400px; top:-80px; right:-60px; background:radial-gradient(ellipse, rgba(34,211,238,0.05) 0%, transparent 70%); border-radius:50%;"></div>
+    <div class="animate-pulse-slow delay-500" style="position:absolute; width:480px; height:380px; bottom:-100px; left:-80px; background:radial-gradient(ellipse, rgba(244,114,182,0.045) 0%, transparent 70%); border-radius:50%;"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-20">
+
+    <header class="mb-12">
+      <span class="section-label mb-3">Interactive Exhibit</span>
+      <h1 class="font-heading font-bold mb-4" style="font-size:clamp(2rem,5vw,3.25rem); color:var(--text-primary);">
+        Timeline Explorer
+      </h1>
+      <p style="color:var(--text-secondary); max-width:42rem; font-size:17px; line-height:1.7;">
+        Click any processor node to inspect its full specifications.
+        Click a second processor while one is open to compare side-by-side.
+        Filter by era using the buttons below.
+      </p>
+    </header>
+
+    <TimelineExplorer client:load processors={allProcessors} eras={eras} />
+
+  </div>
+</BaseLayout>

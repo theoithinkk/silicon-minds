@@ -1,0 +1,74 @@
+[
+  {
+    "id": "cortex-a8",
+    "name": "ARM Cortex-A8",
+    "eraId": "arm-revolution",
+    "cores": 1,
+    "coreConfig": "1× Cortex-A8 (ARMv7-A)",
+    "clockSpeedGHz": 1.0,
+    "dieSizeMm2": 45,
+    "transistorCount": "105M",
+    "processNodeNm": 65,
+    "notableFeature": "First ARMv7 out-of-order core; launched the smartphone performance era"
+  },
+  {
+    "id": "apple-a4",
+    "name": "Apple A4",
+    "eraId": "arm-revolution",
+    "cores": 1,
+    "coreConfig": "1× Cortex-A8 + PowerVR SGX535",
+    "clockSpeedGHz": 1.0,
+    "dieSizeMm2": 53,
+    "transistorCount": "150M",
+    "processNodeNm": 45,
+    "notableFeature": "Apple's first custom SoC; powered iPhone 4 and original iPad"
+  },
+  {
+    "id": "snapdragon-s1-msm7227",
+    "name": "Qualcomm Snapdragon S1 MSM7227",
+    "eraId": "arm-revolution",
+    "cores": 1,
+    "coreConfig": "1× Scorpion (ARMv7)",
+    "clockSpeedGHz": 0.6,
+    "dieSizeMm2": 55,
+    "transistorCount": "95M",
+    "processNodeNm": 65,
+    "notableFeature": "Qualcomm's first Snapdragon; integrated 3G modem on-die"
+  },
+  {
+    "id": "samsung-hummingbird",
+    "name": "Samsung Hummingbird",
+    "eraId": "arm-revolution",
+    "cores": 1,
+    "coreConfig": "1× Cortex-A8 + PowerVR SGX540",
+    "clockSpeedGHz": 1.0,
+    "dieSizeMm2": 40,
+    "transistorCount": "110M",
+    "processNodeNm": 45,
+    "notableFeature": "PowerVR SGX540 GPU delivered 2× the fillrate of contemporaries; used in Galaxy S"
+  },
+  {
+    "id": "ti-omap3430",
+    "name": "Texas Instruments OMAP3430",
+    "eraId": "arm-revolution",
+    "cores": 1,
+    "coreConfig": "1× Cortex-A8 + C64x+ DSP + PowerVR SGX530",
+    "clockSpeedGHz": 0.6,
+    "dieSizeMm2": 90,
+    "transistorCount": "130M",
+    "processNodeNm": 65,
+    "notableFeature": "Heterogeneous compute ahead of its time; used in Nokia N900"
+  },
+  {
+    "id": "nvidia-tegra1",
+    "name": "Nvidia Tegra 1",
+    "eraId": "arm-revolution",
+    "cores": 1,
+    "coreConfig": "1× ARM11 + GeForce GPU",
+    "clockSpeedGHz": 0.7,
+    "dieSizeMm2": 49,
+    "transistorCount": "85M",
+    "processNodeNm": 65,
+    "notableFeature": "Nvidia's first mobile SoC; emphasized GPU-class graphics for media tablets"
+  }
+]

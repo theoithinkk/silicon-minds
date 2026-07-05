@@ -1,0 +1,9 @@
+{
+  "id": "ai-efficiency-era",
+  "name": "The AI & Efficiency Era",
+  "period": "2021 – 2026",
+  "order": 5,
+  "notableFeature": "Dedicated NPUs and custom cores for on-device generative AI",
+  "description": "Running large neural networks in the cloud requires a round-trip to a data center: hundreds of milliseconds of latency, a constant cellular connection, and a subscription to someone else's compute. Apple's Neural Engine, Qualcomm's Hexagon NPU, and MediaTek's APU brought matrix-multiply accelerators directly onto the SoC, enabling real-time photo enhancement, voice recognition, and on-device generative AI. By 2025 the race had moved to custom CPUs and ever-finer nodes: Qualcomm's own Oryon cores (from its Nuvia acquisition) hit 4.61 GHz on the Snapdragon 8 Elite Gen 5, Apple's A19 Pro folded tensor 'Neural Accelerators' into every GPU core, and MediaTek's all-big-core Dimensity 9500 packed ~30 billion transistors — all on TSMC's 3nm N3E/N3P process. The tension is efficiency at scale: deliver teraops-per-watt for an offline LLM without the NPU becoming a thermal hotspot that throttles the very cores it is meant to offload.",
+  "accentColor": "#7B61FF"
+}

@@ -1,0 +1,297 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Silicon Minds: The Evolution of the Mobile Microprocessor' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+// Active nav detection
+const path = Astro.url.pathname.replace(base.replace(/\/$/, ''), '') || '/';
+const isActive = (href: string) => {
+  if (href === '/') return path === '/' || path === '';
+  return path.startsWith(href);
+};
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/explore', label: 'Explore' },
+  { href: '/timeline', label: 'Timeline' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title} — Silicon Minds</title>
+  <ViewTransitions />
+</head>
+<body class="text-text-primary min-h-screen flex flex-col" style="background: transparent;">
+
+  <!-- ── Fixed animated circuit background ─────────────────── -->
+  <div
+    aria-hidden="true"
+    class="bg-noise"
+    style="position: fixed; inset: 0; z-index: -10; pointer-events: none; background-color: var(--bg-base); overflow: hidden;"
+  >
+    <svg
+      class="circuit-svg"
+      width="100%" height="100%"
+      viewBox="0 0 1200 800"
+      preserveAspectRatio="xMidYMid slice"
+      style="position:absolute; inset:0;"
+    >
+      <defs>
+        <!-- Repeating circuit-trace texture -->
+        <pattern id="circuit-tile" width="200" height="200" patternUnits="userSpaceOnUse">
+          <g fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1">
+            <path d="M0 40 H200 M120 0 V200 M40 40 V120 H120 M160 80 H200" />
+            <path d="M0 160 H80 V120 M80 200 V160" />
+          </g>
+          <g fill="rgba(255,255,255,0.07)">
+            <circle cx="40" cy="40" r="2.5" /><circle cx="120" cy="120" r="2.5" />
+            <circle cx="120" cy="40" r="1.8" /><circle cx="80" cy="160" r="1.8" />
+          </g>
+          <g fill="none" stroke="rgba(255,255,255,0.045)"><rect x="156" y="76" width="9" height="9" rx="1"/></g>
+        </pattern>
+
+        <radialGradient id="pulse-glow">
+          <stop offset="0%" stop-color="currentColor" stop-opacity="1"/>
+          <stop offset="100%" stop-color="currentColor" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <rect width="1200" height="800" fill="url(#circuit-tile)" />
+
+      <!-- Blinking junction nodes -->
+      <g class="circuit-anim">
+        <circle class="node n1" cx="120"  cy="40"  r="3" fill="#22D3EE"/>
+        <circle class="node n2" cx="320"  cy="240" r="3" fill="#34D399"/>
+        <circle class="node n3" cx="520"  cy="40"  r="3" fill="#22D3EE"/>
+        <circle class="node n4" cx="720"  cy="320" r="3" fill="#A78BFA"/>
+        <circle class="node n5" cx="920"  cy="120" r="3" fill="#F472B6"/>
+        <circle class="node n6" cx="1080" cy="440" r="3" fill="#22D3EE"/>
+        <circle class="node n1" cx="200"  cy="560" r="3" fill="#A78BFA"/>
+        <circle class="node n3" cx="440"  cy="600" r="3" fill="#34D399"/>
+        <circle class="node n5" cx="680"  cy="680" r="3" fill="#22D3EE"/>
+        <circle class="node n2" cx="880"  cy="640" r="3" fill="#F472B6"/>
+        <circle class="node n4" cx="1040" cy="720" r="3" fill="#34D399"/>
+        <circle class="node n6" cx="80"   cy="320" r="3" fill="#F472B6"/>
+      </g>
+
+      <!-- Data pulses traveling along traces -->
+      <g class="circuit-anim">
+        <circle r="2.6" fill="#22D3EE">
+          <animateMotion path="M-20 40 H1220" dur="6s" begin="0s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="6s" begin="0s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2.6" fill="#A78BFA">
+          <animateMotion path="M120 820 V-20" dur="7s" begin="1.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="7s" begin="1.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2.6" fill="#F472B6">
+          <animateMotion path="M1220 440 H-20" dur="8s" begin="0.8s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="8s" begin="0.8s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2.6" fill="#34D399">
+          <animateMotion path="M720 820 V-20" dur="6.5s" begin="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="6.5s" begin="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2.6" fill="#22D3EE">
+          <animateMotion path="M-20 600 H1220" dur="9s" begin="2.2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="9s" begin="2.2s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ── Nav ──────────────────────────────────────────────── -->
+  <header
+    class="sticky top-0 z-50"
+    style="background: rgba(10,10,15,0.8); backdrop-filter: blur(16px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,0.06);"
+  >
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="flex items-center justify-between h-14">
+
+        <!-- Logo -->
+        <a
+          href={base}
+          class="flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+          aria-label="Silicon Minds home"
+        >
+          <!-- Chip icon -->
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <rect x="5" y="5" width="8" height="8" rx="1.5" stroke="#00E5FF" stroke-width="1.2"/>
+            <line x1="9" y1="1" x2="9" y2="5" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="9" y1="13" x2="9" y2="17" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="1" y1="9" x2="5" y2="9" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="13" y1="9" x2="17" y2="9" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="5" y1="1" x2="5" y2="5" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round" opacity="0.45"/>
+            <line x1="13" y1="1" x2="13" y2="5" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round" opacity="0.45"/>
+            <line x1="5" y1="13" x2="5" y2="17" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round" opacity="0.45"/>
+            <line x1="13" y1="13" x2="13" y2="17" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round" opacity="0.45"/>
+          </svg>
+          <span
+            class="font-heading font-bold text-sm tracking-[0.22em] text-text-primary"
+            style="letter-spacing: 0.22em;"
+          >SILICON MINDS</span>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav aria-label="Main navigation" class="hidden md:flex items-center gap-1">
+          {navLinks.map(link => (
+            <a
+              href={`${base}${link.href.replace(/^\//, '')}`}
+              class={`relative px-3 py-1.5 text-sm rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                isActive(link.href)
+                  ? 'text-text-primary'
+                  : 'text-text-secondary hover:text-text-primary'
+              }`}
+            >
+              {link.label}
+              {isActive(link.href) && (
+                <span
+                  class="absolute bottom-0 left-3 right-3 h-px rounded-full"
+                  style="background: var(--color-primary); opacity: 0.7;"
+                  aria-hidden="true"
+                />
+              )}
+            </a>
+          ))}
+          <a
+            href={`${base}explore`}
+            class="btn-primary ml-3 py-2 px-4 text-xs"
+            style="padding: 7px 16px; font-size: 14px; letter-spacing: 0.05em;"
+          >
+            Enter Exhibit
+          </a>
+        </nav>
+
+        <!-- Mobile toggle (CSS-only) -->
+        <input type="checkbox" id="nav-toggle" class="peer hidden" aria-hidden="true" />
+        <label
+          for="nav-toggle"
+          class="md:hidden flex flex-col justify-center gap-[5px] w-8 h-8 cursor-pointer p-1 rounded focus-visible:ring-2 focus-visible:ring-primary"
+          aria-label="Toggle navigation"
+        >
+          <span class="block h-px bg-text-secondary transition-all duration-200 peer-checked:rotate-45" style="width: 18px;"></span>
+          <span class="block h-px bg-text-secondary transition-all duration-200" style="width: 14px;"></span>
+          <span class="block h-px bg-text-secondary transition-all duration-200 peer-checked:-rotate-45" style="width: 18px;"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Mobile nav panel -->
+    <div
+      class="hidden peer-checked:block md:hidden"
+      style="border-top: 1px solid rgba(255,255,255,0.06); background: rgba(10,10,15,0.97);"
+    >
+      <nav aria-label="Mobile navigation" class="flex flex-col px-5 py-4 gap-1">
+        {navLinks.map(link => (
+          <a
+            href={`${base}${link.href.replace(/^\//, '')}`}
+            class={`px-3 py-2.5 text-sm rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+              isActive(link.href)
+                ? 'text-text-primary bg-white/[0.04]'
+                : 'text-text-secondary hover:text-text-primary'
+            }`}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a href={`${base}explore`} class="btn-primary text-sm text-center mt-3 justify-center">
+          Enter Exhibit
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Main ──────────────────────────────────────────────── -->
+  <main class="flex-1" style="view-transition-name: main-content;">
+    <slot />
+  </main>
+
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer style="border-top: 1px solid rgba(255,255,255,0.06); background: var(--color-surface); margin-top: 80px;">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-10">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-2.5">
+          <svg width="14" height="14" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <rect x="5" y="5" width="8" height="8" rx="1.5" stroke="#00E5FF" stroke-width="1.2" opacity="0.6"/>
+            <line x1="9" y1="1" x2="9" y2="5" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+            <line x1="9" y1="13" x2="9" y2="17" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+            <line x1="1" y1="9" x2="5" y2="9" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+            <line x1="13" y1="9" x2="17" y2="9" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+          </svg>
+          <span class="font-heading font-bold text-xs tracking-[0.2em] text-text-secondary">SILICON MINDS</span>
+        </div>
+        <p class="text-text-secondary text-xs text-center" style="opacity: 0.6;">
+          DLSU CSARCH2 &mdash; Computer Organization & Architecture 2 &mdash; A.Y. 2025–2026
+        </p>
+        <p class="font-mono text-xs text-text-secondary" style="opacity: 0.4;">&copy; {new Date().getFullYear()}</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Scroll reveal script ───────────────────────────────── -->
+  <script>
+    function initReveal() {
+      const items = document.querySelectorAll('.reveal');
+      if (!items.length) return;
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const obs = new IntersectionObserver(
+        (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }),
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      );
+      items.forEach(el => {
+        // Anything already within the viewport on load reveals immediately (no blank first paint)
+        if (el.getBoundingClientRect().top < vh * 0.9) {
+          el.classList.add('visible');
+        } else {
+          obs.observe(el);
+        }
+      });
+    }
+    initReveal();
+    document.addEventListener('astro:page-load', initReveal);
+  </script>
+
+  <!-- ── Stats count-up script ─────────────────────────────── -->
+  <script>
+    function initCountUp() {
+      const els = document.querySelectorAll('[data-count-to]');
+      if (!els.length) return;
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target as HTMLElement;
+          const target = parseInt(el.dataset.countTo || '0');
+          const suffix = el.dataset.countSuffix || '';
+          const dur = 1400;
+          const start = performance.now();
+          const tick = (now: number) => {
+            const t = Math.min((now - start) / dur, 1);
+            const ease = 1 - Math.pow(1 - t, 3);
+            el.textContent = Math.round(ease * target) + suffix;
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          obs.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+      els.forEach(el => obs.observe(el));
+    }
+    initCountUp();
+    document.addEventListener('astro:page-load', initCountUp);
+  </script>
+
+</body>
+</html>

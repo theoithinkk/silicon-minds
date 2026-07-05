@@ -1,0 +1,9 @@
+{
+  "id": "system-on-chip-era",
+  "name": "The System-on-Chip Era",
+  "period": "2015 – 2020",
+  "order": 4,
+  "notableFeature": "CPU, GPU, modem, and ISP on one die",
+  "description": "Integrating discrete CPU, GPU, modem, image signal processor, and memory controller onto a single piece of silicon eliminated the inter-chip buses that wasted power and board area. Qualcomm's Snapdragon 820 even brought its own custom CPU microarchitecture (Kryo) in-house rather than licensing a stock ARM design. The tension was integration complexity: cramming more heterogeneous compute blocks onto one die pushed process nodes to their limits and made yield management — getting enough defect-free chips per wafer — an engineering discipline as important as the architecture itself.",
+  "accentColor": "#00E5FF"
+}

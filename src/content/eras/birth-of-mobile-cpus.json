@@ -1,0 +1,9 @@
+{
+  "id": "birth-of-mobile-cpus",
+  "name": "Birth of Mobile CPUs",
+  "period": "Mid-1990s – Early 2000s",
+  "order": 1,
+  "notableFeature": "Low-power RISC for feature phones",
+  "description": "The earliest mobile processors had to solve a brutal constraint: deliver enough computing power to run a feature phone's UI and radio stack while drawing only milliwatts from a battery measured in days, not hours. Engineers couldn't chase MHz — every extra transistor was a liability in a world where users expected a week of standby. The engineering tension was fundamental: do any computing at all, or keep the lights on.",
+  "accentColor": "#00E5FF"
+}
