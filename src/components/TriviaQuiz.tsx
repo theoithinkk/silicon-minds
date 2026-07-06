@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { CheckCircle, XCircle, RotateCcw, Award, Share2, Check } from 'lucide-react';
 
@@ -61,7 +61,10 @@ function buildQuiz(questions: Question[]): ShuffledQuestion[] {
 
 export default function TriviaQuiz({ questions, eras }: Props) {
   const prefersReduced = useReducedMotion();
-  const quiz = useMemo(() => buildQuiz(questions), []);
+  // Shuffle on the client only. A server-side shuffle differs from the client's
+  // and causes a React hydration mismatch (the first question visibly swaps).
+  const [quiz, setQuiz] = useState<ShuffledQuestion[] | null>(null);
+  useEffect(() => { setQuiz(buildQuiz(questions)); }, []);
 
   const [current, setCurrent] = useState(0);
   const [answered, setAnswered] = useState<number | null>(null);
@@ -69,6 +72,32 @@ export default function TriviaQuiz({ questions, eras }: Props) {
   const [finished, setFinished] = useState(false);
   const [copied, setCopied] = useState(false);
   const nextBtnRef = useRef<HTMLButtonElement>(null);
+
+  const restart = () => {
+    setQuiz(buildQuiz(questions)); // fresh draw + reshuffle each retry
+    setCurrent(0); setAnswered(null); setResults([]); setFinished(false); setCopied(false);
+  };
+
+  const eraBreakdown = useMemo(() => {
+    const map: Record<string, { correct: number; total: number }> = {};
+    for (const id of Object.keys(ERA_LABELS)) map[id] = { correct: 0, total: 0 };
+    (quiz ?? []).forEach((sq, i) => {
+      const eraId = sq.original.eraId;
+      if (!map[eraId]) map[eraId] = { correct: 0, total: 0 };
+      map[eraId].total++;
+      if (results[i]) map[eraId].correct++;
+    });
+    return map;
+  }, [results, finished, quiz]);
+
+  if (!quiz) {
+    return (
+      <div role="region" aria-label="Trivia Quiz" style={{ maxWidth: 580, minHeight: 320, display: 'flex', alignItems: 'center', gap: 10, fontFamily: "'JetBrains Mono', monospace", fontSize: 13, color: 'var(--text-secondary)' }}>
+        <span style={{ width: 6, height: 6, borderRadius: 999, background: 'var(--ui-primary)', boxShadow: '0 0 8px var(--ui-primary)' }} aria-hidden="true" />
+        Loading quiz…
+      </div>
+    );
+  }
 
   const q = quiz[current];
   const eraColor = ERA_COLORS[q.original.eraId] ?? '#22D3EE';
@@ -84,20 +113,6 @@ export default function TriviaQuiz({ questions, eras }: Props) {
     if (current + 1 >= quiz.length) { setFinished(true); }
     else { setCurrent(c => c + 1); setAnswered(null); }
   };
-
-  const restart = () => { setCurrent(0); setAnswered(null); setResults([]); setFinished(false); setCopied(false); };
-
-  const eraBreakdown = useMemo(() => {
-    const map: Record<string, { correct: number; total: number }> = {};
-    for (const id of Object.keys(ERA_LABELS)) map[id] = { correct: 0, total: 0 };
-    quiz.forEach((sq, i) => {
-      const eraId = sq.original.eraId;
-      if (!map[eraId]) map[eraId] = { correct: 0, total: 0 };
-      map[eraId].total++;
-      if (results[i]) map[eraId].correct++;
-    });
-    return map;
-  }, [results, finished]);
 
   // ── Score screen ───────────────────────────────────────────
   if (finished) {
@@ -116,12 +131,12 @@ export default function TriviaQuiz({ questions, eras }: Props) {
         const d = eraBreakdown[e.id] ?? { correct: 0, total: 0 };
         return `  ${ERA_LABELS[e.id] ?? e.id}: ${d.correct}/${d.total}`;
       }).join('\n');
-      const text = `Silicon Minds Trivia — ${correct}/${total} (${pct}%)\n${lines}`;
+      const text = `Silicon Minds Trivia: ${correct}/${total} (${pct}%)\n${lines}`;
       try {
         await navigator.clipboard.writeText(text);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
-      } catch { /* clipboard unavailable — no-op */ }
+      } catch { /* clipboard unavailable, no-op */ }
     };
 
     return (
@@ -142,7 +157,7 @@ export default function TriviaQuiz({ questions, eras }: Props) {
           <p style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: 54, lineHeight: 1, background: scoreGradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', display: 'inline-block' }}>
             {correct}<span style={{ fontSize: 26, opacity: 0.6 }}>/{total}</span>
           </p>
-          <p style={{ color: 'var(--text-secondary)', marginTop: 6, fontSize: 16 }}>{pct}% correct — {grade}</p>
+          <p style={{ color: 'var(--text-secondary)', marginTop: 6, fontSize: 16 }}>{pct}% correct. {grade}</p>
         </div>
 
         <h4 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: 16, color: 'var(--text-primary)', marginBottom: 14 }}>Per-Era Breakdown</h4>
@@ -239,7 +254,7 @@ export default function TriviaQuiz({ questions, eras }: Props) {
                   key={idx}
                   onClick={() => choose(idx)}
                   disabled={answered !== null}
-                  aria-label={`Option ${['A','B','C','D'][idx]}: ${opt}${answered !== null ? (showCorrect ? ' — correct' : chosen ? ' — incorrect' : '') : ''}`}
+                  aria-label={`Option ${['A','B','C','D'][idx]}: ${opt}${answered !== null ? (showCorrect ? ', correct' : chosen ? ', incorrect' : '') : ''}`}
                   animate={animate}
                   transition={showCorrect ? { duration: 0.4, ease: [0.34, 1.56, 0.64, 1] } : { duration: 0.4 }}
                   whileHover={answered === null && !prefersReduced ? { y: -1 } : {}}
@@ -254,7 +269,7 @@ export default function TriviaQuiz({ questions, eras }: Props) {
                     ...stateStyle,
                   }}
                 >
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, letterSpacing: '0.1em', width: 20, flexShrink: 0, opacity: 0.5 }}>{['A','B','C','D'][idx]}</span>
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, letterSpacing: '0.1em', width: 20, flexShrink: 0, opacity: 0.9 }}>{['A','B','C','D'][idx]}</span>
                   <span style={{ flex: 1 }}>{opt}</span>
                   {showCorrect && <CheckCircle size={14} style={{ flexShrink: 0, color: '#4ade80' }} aria-hidden="true" />}
                   {showWrong   && <XCircle size={14}   style={{ flexShrink: 0, color: '#f87171' }} aria-hidden="true" />}

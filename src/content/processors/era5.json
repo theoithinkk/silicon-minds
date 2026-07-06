@@ -117,7 +117,7 @@
     "dieSizeMm2": 105,
     "transistorCount": "~20B",
     "processNodeNm": 3,
-    "notableFeature": "TSMC N3P; matrix-multiply Neural Accelerators built into every GPU core — single-core leader (iPhone 17 Pro, 2025)"
+    "notableFeature": "TSMC N3P; matrix-multiply Neural Accelerators built into every GPU core; single-core leader (iPhone 17 Pro, 2025)"
   },
   {
     "id": "snapdragon-8-elite-gen5",

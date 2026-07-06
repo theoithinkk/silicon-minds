@@ -6,7 +6,7 @@ const base = import.meta.env.BASE_URL;
 const ERA_COLORS = ['#22D3EE', '#34D399', '#F59E0B', '#A78BFA', '#F472B6'];
 ---
 
-<BaseLayout title="About" description="About the Silicon Minds project — DLSU CSARCH2.">
+<BaseLayout title="About" description="About the Silicon Minds project (DLSU CSARCH2).">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
     <header class="mb-8">
@@ -32,7 +32,7 @@ const ERA_COLORS = ['#22D3EE', '#34D399', '#F59E0B', '#A78BFA', '#F472B6'];
         <dl class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <dt class="font-mono text-xs text-text-secondary uppercase tracking-wider mb-1">Course</dt>
-            <dd class="text-text-primary font-body">CSARCH2 — Computer Architecture 2</dd>
+            <dd class="text-text-primary font-body">CSARCH2 (Computer Architecture 2)</dd>
           </div>
           <div>
             <dt class="font-mono text-xs text-text-secondary uppercase tracking-wider mb-1">Institution</dt>
@@ -56,7 +56,7 @@ const ERA_COLORS = ['#22D3EE', '#34D399', '#F59E0B', '#A78BFA', '#F472B6'];
       <div class="prose prose-invert max-w-none space-y-4 text-text-secondary leading-relaxed">
         <p>
           <strong class="text-text-primary">Silicon Minds</strong> is an interactive digital museum exploring thirty years of mobile microprocessor
-          evolution — from the 8-bit ARM7TDMI inside a 1990s feature phone to the 19-billion-transistor Apple A17 Pro that
+          evolution, from the 8-bit ARM7TDMI inside a 1990s feature phone to the 19-billion-transistor Apple A17 Pro that
           runs on-device AI inference in your pocket today.
         </p>
         <p>
@@ -87,57 +87,46 @@ const ERA_COLORS = ['#22D3EE', '#34D399', '#F59E0B', '#A78BFA', '#F472B6'];
             name: 'Theodore Garcia', role: 'UI/UX Designer & Frontend', color: '#22D3EE',
             slug: 'theodore-garcia',
             contributions: [
-              'Lorem ipsum dolor sit amet consectetur',
-              'Adipiscing elit sed do eiusmod tempor',
-              'Incididunt ut labore et dolore magna',
-              'Aliqua ut enim ad minim veniam',
+              'Designed and implemented the UI/UX and overall page layout',
             ],
           },
           {
             name: 'Maria Fides Bancoro', role: 'Content Research', color: '#34D399',
             slug: 'maria-fides-bancoro',
             contributions: [
-              'Lorem ipsum dolor sit amet consectetur',
-              'Adipiscing elit sed do eiusmod tempor',
-              'Incididunt ut labore et dolore magna',
-              'Aliqua ut enim ad minim veniam',
+              "Researched and wrote the site's content",
+              'Helped create the circuit SVG artwork',
             ],
           },
           {
             name: 'Nathaniel Singh', role: 'Quiz Designer', color: '#F59E0B',
             slug: 'nathaniel-singh',
             contributions: [
-              'Lorem ipsum dolor sit amet consectetur',
-              'Adipiscing elit sed do eiusmod tempor',
-              'Incididunt ut labore et dolore magna',
-              'Aliqua ut enim ad minim veniam',
+              'Researched and authored the trivia quiz questions',
+              'Tested every feature across the site',
             ],
           },
           {
             name: 'Theon Schuyler Garcia', role: 'Content Research & Interactive Components', color: '#A78BFA',
             slug: 'theon-schuyler-garcia',
             contributions: [
-              'Lorem ipsum dolor sit amet consectetur',
-              'Adipiscing elit sed do eiusmod tempor',
-              'Incididunt ut labore et dolore magna',
-              'Aliqua ut enim ad minim veniam',
+              "Led content research and wrote the site's information",
+              'Helped refine the Astro components',
             ],
           },
           {
             name: 'Marc Jared Ercia', role: 'Cute Guy', color: '#F472B6',
             slug: 'marc-jared-ercia',
             contributions: [
-              'Lorem ipsum dolor sit amet consectetur',
-              'Adipiscing elit sed do eiusmod tempor',
-              'Incididunt ut labore et dolore magna',
-              'Aliqua ut enim ad minim veniam',
+              'Assisted in designing the UI/UX draft',
+              'Helped build the circuit-board background component',
             ],
           },
         ].map(member => (
           <div
             class="team-card"
             tabindex="0"
-            aria-label={`${member.name} — ${member.role}`}
+            aria-label={`${member.name}, ${member.role}`}
             style={`--c:${member.color};`}
           >
             <!-- Default face -->
@@ -151,7 +140,7 @@ const ERA_COLORS = ['#22D3EE', '#34D399', '#F59E0B', '#A78BFA', '#F472B6'];
               <span class="team-role-pill font-mono">{member.role}</span>
             </div>
 
-            <!-- Hover / focus reveal — boots up like a screen -->
+            <!-- Hover / focus reveal, boots up like a screen -->
             <div class="team-reveal">
               <!-- Screen that powers on and loads the photo -->
               <div class="team-screen">

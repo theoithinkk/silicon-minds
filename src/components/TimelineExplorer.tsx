@@ -38,7 +38,7 @@ const ERA_COLORS: Record<string, string> = {
   'ai-efficiency-era': '#F472B6',
 };
 
-// Rough compute proxy used for the "relative to best (2024)" bar — data-driven, not invented.
+// Rough compute proxy used for the "relative to latest" bar. Data-driven, not invented.
 const computeScore = (p: Processor) => p.cores * p.clockSpeedGHz;
 
 function SpecBar({ value, max, color }: { value: number; max: number; color: string }) {
@@ -61,7 +61,8 @@ function WinArrow({ win, color }: { win: boolean | null; color: string }) {
   if (win === null) return null;
   return (
     <span
-      style={{ fontSize: 13, marginLeft: 5, color: win ? color : 'var(--text-muted)' }}
+      role="img"
+      style={{ fontSize: 13, marginLeft: 5, color: win ? color : 'var(--text-secondary)' }}
       aria-label={win ? 'better' : 'lower'}
     >
       {win ? '▲' : '▾'}
@@ -139,7 +140,7 @@ function SpecCard({
         <X size={12} aria-hidden="true" />
       </button>
 
-      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color, opacity: 0.7, marginBottom: 4 }}>
+      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color, marginBottom: 4 }}>
         {proc.eraId.replace(/-/g, ' ')}
       </p>
 
@@ -163,7 +164,7 @@ function SpecCard({
           </div>
         ))}
 
-        {/* Relative to best (2024) — log scale */}
+        {/* Relative to latest processor, linear scale */}
         <div style={{ marginTop: 4, paddingTop: 10, borderTop: '1px solid var(--border-subtle)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <dt style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>
@@ -244,6 +245,7 @@ export default function TimelineExplorer({ processors, eras }: Props) {
               onClick={() => setSelectedEra(prev => prev === era.id ? null : era.id)}
               aria-pressed={active}
               aria-label={`Filter by ${era.name}`}
+              title={era.name}
               style={{
                 ...filterBtnBase,
                 background: active ? color : 'transparent',
@@ -283,7 +285,7 @@ export default function TimelineExplorer({ processors, eras }: Props) {
               aria-live="polite"
               aria-label="Comparison view"
             >
-              <p style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: "'JetBrains Mono', monospace", fontSize: 12, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-secondary)', marginBottom: 12, opacity: 0.7 }}>
+              <p style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: "'JetBrains Mono', monospace", fontSize: 12, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-secondary)', marginBottom: 12 }}>
                 <GitCompare size={11} aria-hidden="true" /> Comparing
               </p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: 0, alignItems: 'stretch' }} className="cmp-grid">
@@ -364,7 +366,7 @@ export default function TimelineExplorer({ processors, eras }: Props) {
                           {proc.name}
                         </span>
 
-                        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'var(--text-secondary)', opacity: 0.6, lineHeight: 1.3 }}>
+                        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'var(--text-secondary)', lineHeight: 1.3 }}>
                           {proc.processNodeNm}nm / {proc.clockSpeedGHz}GHz
                         </span>
                       </button>

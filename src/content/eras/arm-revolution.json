@@ -4,6 +4,6 @@
   "period": "2007 – 2012",
   "order": 2,
   "notableFeature": "ARM dominates the smartphone era",
-  "description": "When Apple launched the iPhone in 2007 on an ARM Cortex-A8 derivative, it redefined what a mobile CPU had to do: render a full WebKit browser, play H.264 video, and run rich applications — all from a 1,200 mAh battery. Single-core frequency scaling had hit a thermal wall around 1 GHz, so designers squeezed every instruction-per-clock out of out-of-order pipelines and wider SIMD units. The tension was ISA efficiency: x86's legacy baggage cost power that ARM's clean RISC load-store architecture avoided.",
+  "description": "When Apple launched the iPhone in 2007 on an ARM Cortex-A8 derivative, it redefined what a mobile CPU had to do: render a full WebKit browser, play H.264 video, and run rich applications, all from a 1,200 mAh battery. Single-core frequency scaling had hit a thermal wall around 1 GHz, so designers squeezed every instruction-per-clock out of out-of-order pipelines and wider SIMD units. The tension was ISA efficiency: x86's legacy baggage cost power that ARM's clean RISC load-store architecture avoided.",
   "accentColor": "#00E5FF"
 }

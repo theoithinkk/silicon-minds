@@ -31,10 +31,13 @@ const navLinks = [
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
-  <title>{title} — Silicon Minds</title>
+  <title>{title} | Silicon Minds</title>
   <ViewTransitions />
 </head>
 <body class="text-text-primary min-h-screen flex flex-col" style="background: transparent;">
+
+  <!-- ── Skip link (keyboard a11y) ─────────────────────────── -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
 
   <!-- ── Fixed animated circuit background ─────────────────── -->
   <div
@@ -118,6 +121,10 @@ const navLinks = [
     class="sticky top-0 z-50"
     style="background: rgba(10,10,15,0.8); backdrop-filter: blur(16px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,0.06);"
   >
+    <!-- Mobile toggle state. Must be a direct sibling of the mobile panel below for peer-checked to work.
+         Visually hidden via CSS but keyboard-focusable, so the menu works without a mouse. -->
+    <input type="checkbox" id="nav-toggle" class="peer" aria-label="Toggle navigation menu" />
+
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
       <div class="flex items-center justify-between h-14">
 
@@ -175,16 +182,15 @@ const navLinks = [
           </a>
         </nav>
 
-        <!-- Mobile toggle (CSS-only) -->
-        <input type="checkbox" id="nav-toggle" class="peer hidden" aria-hidden="true" />
+        <!-- Mobile hamburger (toggles #nav-toggle at the top of <header>) -->
         <label
           for="nav-toggle"
-          class="md:hidden flex flex-col justify-center gap-[5px] w-8 h-8 cursor-pointer p-1 rounded focus-visible:ring-2 focus-visible:ring-primary"
+          class="md:hidden flex flex-col justify-center gap-[5px] w-9 h-9 cursor-pointer p-1.5 rounded focus-visible:ring-2 focus-visible:ring-primary"
           aria-label="Toggle navigation"
         >
-          <span class="block h-px bg-text-secondary transition-all duration-200 peer-checked:rotate-45" style="width: 18px;"></span>
-          <span class="block h-px bg-text-secondary transition-all duration-200" style="width: 14px;"></span>
-          <span class="block h-px bg-text-secondary transition-all duration-200 peer-checked:-rotate-45" style="width: 18px;"></span>
+          <span class="hamburger-line block h-px bg-text-secondary" style="width: 18px;"></span>
+          <span class="hamburger-line block h-px bg-text-secondary" style="width: 14px;"></span>
+          <span class="hamburger-line block h-px bg-text-secondary" style="width: 18px;"></span>
         </label>
       </div>
     </div>
@@ -212,10 +218,13 @@ const navLinks = [
         </a>
       </nav>
     </div>
+
+    <!-- Reading progress -->
+    <div id="scroll-progress" aria-hidden="true"></div>
   </header>
 
   <!-- ── Main ──────────────────────────────────────────────── -->
-  <main class="flex-1" style="view-transition-name: main-content;">
+  <main id="main-content" tabindex="-1" class="flex-1" style="view-transition-name: main-content; outline: none;">
     <slot />
   </main>
 
@@ -233,13 +242,45 @@ const navLinks = [
           </svg>
           <span class="font-heading font-bold text-xs tracking-[0.2em] text-text-secondary">SILICON MINDS</span>
         </div>
-        <p class="text-text-secondary text-xs text-center" style="opacity: 0.6;">
+        <p class="text-text-secondary text-xs text-center">
           DLSU CSARCH2 &mdash; Computer Organization & Architecture 2 &mdash; A.Y. 2025–2026
         </p>
-        <p class="font-mono text-xs text-text-secondary" style="opacity: 0.4;">&copy; {new Date().getFullYear()}</p>
+        <p class="font-mono text-xs text-text-secondary">&copy; {new Date().getFullYear()}</p>
       </div>
     </div>
   </footer>
+
+  <!-- ── Back to top ───────────────────────────────────────── -->
+  <button id="back-to-top" aria-label="Back to top">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <!-- ── Scroll UI: progress bar + back-to-top ─────────────── -->
+  <script>
+    let scrollTicking = false;
+    function updateScrollUI() {
+      scrollTicking = false;
+      const bar = document.getElementById('scroll-progress');
+      const btn = document.getElementById('back-to-top');
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (bar) bar.style.width = (max > 0 ? Math.min((window.scrollY / max) * 100, 100) : 0) + '%';
+      if (btn) btn.classList.toggle('show', window.scrollY > 600);
+    }
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) { scrollTicking = true; requestAnimationFrame(updateScrollUI); }
+    }, { passive: true });
+    // delegate click so the handler survives view-transition DOM swaps
+    document.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest?.('#back-to-top')) {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      }
+    });
+    document.addEventListener('astro:page-load', updateScrollUI);
+    updateScrollUI();
+  </script>
 
   <!-- ── Scroll reveal script ───────────────────────────────── -->
   <script>
@@ -291,6 +332,23 @@ const navLinks = [
     }
     initCountUp();
     document.addEventListener('astro:page-load', initCountUp);
+  </script>
+
+  <!-- ── Scroll to #hash target (fixes cross-page anchor links like Start Quiz) ─ -->
+  <script>
+    function scrollToHash() {
+      if (!location.hash) return;
+      const el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (!el) return;
+      // reveal it if it's a scroll-reveal target that hasn't animated in yet
+      el.classList.add('visible');
+      // wait a frame so layout is settled, then jump to it
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        el.scrollIntoView({ block: 'start' });
+      }));
+    }
+    scrollToHash();
+    document.addEventListener('astro:page-load', scrollToHash);
   </script>
 
 </body>

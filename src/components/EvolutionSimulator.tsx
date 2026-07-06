@@ -141,7 +141,7 @@ export default function EvolutionSimulator({ eras }: Props) {
                 }}
               >
                 <input type="checkbox" checked={checked} onChange={() => toggleEra(era.id)} disabled={running} className="sr-only" aria-label={`Include ${era.name}`} />
-                <span style={{ width: 13, height: 13, borderRadius: 3, border: `1px solid ${checked ? color : 'rgba(255,255,255,0.2)'}`, background: checked ? color : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all 150ms' }} aria-hidden="true">
+                <span style={{ width: 13, height: 13, borderRadius: 3, border: `1px solid ${checked ? color : 'rgba(255,255,255,0.5)'}`, background: checked ? color : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all 150ms' }} aria-hidden="true">
                   {checked && <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="#05050A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                 </span>
                 Era {era.order}: {era.name}
@@ -215,7 +215,7 @@ export default function EvolutionSimulator({ eras }: Props) {
                   </div>
 
                   {done && (
-                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'var(--text-secondary)', marginTop: 5, opacity: 0.7 }}>
+                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'var(--text-secondary)', marginTop: 5 }}>
                       {PERFORMANCE[era.id]}× relative performance · Finished in {(completionMs(era.id) / 1000).toFixed(2)}s
                     </p>
                   )}
@@ -269,9 +269,9 @@ export default function EvolutionSimulator({ eras }: Props) {
               <table style={{ width: '100%', fontFamily: "'JetBrains Mono', monospace", fontSize: 13, borderCollapse: 'collapse' }}>
                 <thead>
                   <tr style={{ color: 'var(--text-secondary)', borderBottom: '1px solid var(--border-subtle)' }}>
-                    <th style={{ textAlign: 'left', fontWeight: 'normal', paddingBottom: 8, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Era</th>
-                    <th style={{ textAlign: 'left', fontWeight: 'normal', paddingBottom: 8, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Perf.</th>
-                    <th style={{ textAlign: 'left', fontWeight: 'normal', paddingBottom: 8, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Time</th>
+                    <th scope="col" style={{ textAlign: 'left', fontWeight: 'normal', paddingBottom: 8, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Era</th>
+                    <th scope="col" style={{ textAlign: 'left', fontWeight: 'normal', paddingBottom: 8, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Perf.</th>
+                    <th scope="col" style={{ textAlign: 'left', fontWeight: 'normal', paddingBottom: 8, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Time</th>
                   </tr>
                 </thead>
                 <tbody>

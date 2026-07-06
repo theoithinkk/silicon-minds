@@ -6,7 +6,7 @@
       "question": "Which instruction set extension did the ARM7TDMI introduce to reduce code size for ROM-constrained mobile devices?",
       "options": ["Thumb 16-bit ISA", "NEON SIMD", "VFPv2", "Jazelle DBX"],
       "correctIndex": 0,
-      "explanation": "The 'T' in ARM7TDMI stands for Thumb — a 16-bit compressed version of ARM instructions that roughly halved code size, critical when ROM was measured in kilobytes."
+      "explanation": "The 'T' in ARM7TDMI stands for Thumb, a 16-bit compressed version of ARM instructions that roughly halved code size, critical when ROM was measured in kilobytes."
     },
     {
       "id": "q-birth-2",
@@ -38,7 +38,7 @@
       "question": "What made the Intel StrongARM SA-110 notable in the late 1990s?",
       "options": ["It was the first chip to exceed 1 GHz", "It was the first high-performance ARM for handhelds, powering early iPAQs", "It introduced the first on-chip GPU", "It used a 65nm process node"],
       "correctIndex": 1,
-      "explanation": "The StrongARM SA-110 ran at 233 MHz and brought desktop-class performance to Palm-sized PCs and the Compaq iPAQ — remarkable for 350nm silicon in 1996."
+      "explanation": "The StrongARM SA-110 ran at 233 MHz and brought desktop-class performance to Palm-sized PCs and the Compaq iPAQ, remarkable for 350nm silicon in 1996."
     },
     {
       "id": "q-birth-6",
@@ -46,7 +46,7 @@
       "question": "Texas Instruments' OMAP1 was innovative because it paired an ARM application core with what?",
       "options": ["A dedicated GPU", "A CDMA radio modem", "A TI C55x DSP for audio and voice", "An FPGA co-processor"],
       "correctIndex": 2,
-      "explanation": "OMAP1 combined an ARM925T with a C55x DSP, offloading audio codec and voice processing so the ARM core could remain in low-power states — an early form of heterogeneous compute."
+      "explanation": "OMAP1 combined an ARM925T with a C55x DSP, offloading audio codec and voice processing so the ARM core could remain in low-power states, an early form of heterogeneous compute."
     },
     {
       "id": "q-arm-1",
@@ -54,7 +54,7 @@
       "question": "Which processor powered the original iPhone (2007)?",
       "options": ["Qualcomm Snapdragon S1", "Samsung Hummingbird", "ARM Cortex-A8 (Samsung-made)", "Nvidia Tegra 1"],
       "correctIndex": 2,
-      "explanation": "The iPhone used a Samsung-manufactured ARM Cortex-A8 running at 412 MHz (underclocked from 620 MHz for thermals). Apple licensed the core design — they hadn't yet built their own microarchitecture."
+      "explanation": "The iPhone used a Samsung-manufactured ARM Cortex-A8 running at 412 MHz (underclocked from 620 MHz for thermals). Apple licensed the core design; they hadn't yet built their own microarchitecture."
     },
     {
       "id": "q-arm-2",
@@ -62,7 +62,7 @@
       "question": "What was the Apple A4 (2010)?",
       "options": ["Apple's first chip with a custom CPU microarchitecture", "Apple's first SoC, combining Cortex-A8 and PowerVR SGX535", "Apple's first 64-bit chip", "Apple's first chip with a Neural Engine"],
       "correctIndex": 1,
-      "explanation": "The A4 was Apple's first self-branded SoC — but it still used a stock ARM Cortex-A8 CPU. Custom Apple CPU microarchitectures didn't appear until the A6 (Swift cores) in 2012."
+      "explanation": "The A4 was Apple's first self-branded SoC, but it still used a stock ARM Cortex-A8 CPU. Custom Apple CPU microarchitectures didn't appear until the A6 (Swift cores) in 2012."
     },
     {
       "id": "q-arm-3",
@@ -102,7 +102,7 @@
       "question": "Which chip is widely credited as the first dual-core mobile SoC in a shipping smartphone?",
       "options": ["Apple A6", "Qualcomm Snapdragon S3 MSM8660", "Nvidia Tegra 2", "Samsung Exynos 4210"],
       "correctIndex": 2,
-      "explanation": "The Nvidia Tegra 2 debuted in the Motorola Atrix 4G in January 2011 — the first dual-core mobile SoC to reach consumers at scale."
+      "explanation": "The Nvidia Tegra 2 debuted in the Motorola Atrix 4G in January 2011, the first dual-core mobile SoC to reach consumers at scale."
     },
     {
       "id": "q-multi-2",
@@ -124,7 +124,7 @@
       "id": "q-multi-4",
       "eraId": "multicore-era",
       "question": "The Apple A6 (2012) was notable because it used which CPU cores?",
-      "options": ["Licensed ARM Cortex-A15", "Custom Apple 'Swift' cores — Apple's first in-house microarchitecture", "Licensed ARM Cortex-A9 in dual config", "Custom 'Cyclone' 64-bit cores"],
+      "options": ["Licensed ARM Cortex-A15", "Custom Apple 'Swift' cores (Apple's first in-house microarchitecture)", "Licensed ARM Cortex-A9 in dual config", "Custom 'Cyclone' 64-bit cores"],
       "correctIndex": 1,
       "explanation": "Swift was Apple's first fully custom ARMv7s CPU microarchitecture. It debuted in the A6 and delivered roughly 2× the performance of the Cortex-A9 based A5."
     },
@@ -142,7 +142,7 @@
       "question": "The Samsung Exynos 5 Dual was the first smartphone chip to use which ARM CPU core?",
       "options": ["Cortex-A15", "Cortex-A57", "Cortex-A72", "Cortex-A78"],
       "correctIndex": 0,
-      "explanation": "The Exynos 5 Dual shipped two Cortex-A15 cores — ARM's highest-performance core at the time — in the Google Nexus 10, delivering near-desktop performance at sub-2W."
+      "explanation": "The Exynos 5 Dual shipped two Cortex-A15 cores (ARM's highest-performance core at the time) in the Google Nexus 10, delivering near-desktop performance at sub-2W."
     },
     {
       "id": "q-soc-1",
@@ -166,7 +166,7 @@
       "question": "The Qualcomm Snapdragon 820 was notable for which reason?",
       "options": ["First Snapdragon with an integrated modem", "First Snapdragon on a 5nm process", "First Snapdragon with Qualcomm's in-house Kryo CPU cores replacing stock ARM designs", "First Snapdragon with hardware ray tracing"],
       "correctIndex": 2,
-      "explanation": "Snapdragon 820 introduced Kryo — Qualcomm's own custom ARMv8 microarchitecture — rather than licensing stock Cortex cores. This was Qualcomm's bid to compete with Apple's custom CPU advantage."
+      "explanation": "Snapdragon 820 introduced Kryo, Qualcomm's own custom ARMv8 microarchitecture, rather than licensing stock Cortex cores. This was Qualcomm's bid to compete with Apple's custom CPU advantage."
     },
     {
       "id": "q-soc-4",
@@ -174,7 +174,7 @@
       "question": "Why is yield management critical when integrating more IP blocks onto a single SoC die?",
       "options": ["More blocks require faster memory", "A larger die has more area, increasing the probability that a random defect falls on a functional block", "More blocks require more power pins", "Larger dies must use older process nodes"],
       "correctIndex": 1,
-      "explanation": "Die yield follows a statistical model — a larger die is more likely to contain a process defect. As SoCs integrated CPU, GPU, modem, ISP, and DSP onto one die, yield engineering became as important as microarchitecture."
+      "explanation": "Die yield follows a statistical model: a larger die is more likely to contain a process defect. As SoCs integrated CPU, GPU, modem, ISP, and DSP onto one die, yield engineering became as important as microarchitecture."
     },
     {
       "id": "q-soc-5",
@@ -182,7 +182,7 @@
       "question": "The Apple A10 Fusion introduced an asymmetric CPU cluster design. What did this enable?",
       "options": ["Higher peak single-core frequency", "A dedicated cluster of efficiency cores that the OS could use for lightweight tasks, saving battery", "Simultaneous multi-threading on the performance cores", "Hardware-accelerated machine learning inference"],
       "correctIndex": 1,
-      "explanation": "The A10's two Zephyr efficiency cores handled low-demand workloads while the two Hurricane performance cores stayed idle, reducing average power consumption — the precursor to Apple's P+E architecture."
+      "explanation": "The A10's two Zephyr efficiency cores handled low-demand workloads while the two Hurricane performance cores stayed idle, reducing average power consumption. It was the precursor to Apple's P+E architecture."
     },
     {
       "id": "q-soc-6",
@@ -190,7 +190,7 @@
       "question": "What process node did the MediaTek Helio X30 introduce to mobile SoCs?",
       "options": ["16nm", "12nm", "10nm", "7nm"],
       "correctIndex": 2,
-      "explanation": "The Helio X30 was manufactured on TSMC's 10nm process — the first mobile SoC to use that node — enabling its tri-cluster 10-core design within a reasonable power budget."
+      "explanation": "The Helio X30 was manufactured on TSMC's 10nm process, the first mobile SoC to use that node, enabling its tri-cluster 10-core design within a reasonable power budget."
     },
     {
       "id": "q-ai-1",
@@ -204,9 +204,9 @@
       "id": "q-ai-2",
       "eraId": "ai-efficiency-era",
       "question": "The Apple A17 Pro was built on which process node and was the first of its kind?",
-      "options": ["4nm — first 4nm mobile chip", "3nm — first 3nm mobile chip", "5nm — first 5nm mobile chip", "2nm — first 2nm mobile chip"],
+      "options": ["4nm (first 4nm mobile chip)", "3nm (first 3nm mobile chip)", "5nm (first 5nm mobile chip)", "2nm (first 2nm mobile chip)"],
       "correctIndex": 1,
-      "explanation": "The A17 Pro, launching in iPhone 15 Pro in 2023, was fabricated on TSMC's 3nm process (N3B) — the first mass-production 3nm chip in any device category."
+      "explanation": "The A17 Pro, launching in iPhone 15 Pro in 2023, was fabricated on TSMC's 3nm process (N3B), the first mass-production 3nm chip in any device category."
     },
     {
       "id": "q-ai-3",
@@ -222,7 +222,7 @@
       "question": "How many TOPS (tera-operations per second) does the Qualcomm Snapdragon 8 Gen 3's Hexagon NPU deliver?",
       "options": ["15 TOPS", "35 TOPS", "98 TOPS", "200 TOPS"],
       "correctIndex": 2,
-      "explanation": "The Snapdragon 8 Gen 3's Hexagon NPU delivers 98 TOPS — enough to run 7B-parameter quantized LLMs on-device, enabling Qualcomm's on-device generative AI features."
+      "explanation": "The Snapdragon 8 Gen 3's Hexagon NPU delivers 98 TOPS, enough to run 7B-parameter quantized LLMs on-device, enabling Qualcomm's on-device generative AI features."
     },
     {
       "id": "q-ai-5",
@@ -246,7 +246,7 @@
       "question": "What was the major CPU change Qualcomm introduced with the 2024 Snapdragon 8 Elite?",
       "options": ["It switched from ARM to RISC-V cores", "It replaced licensed ARM Cortex cores with Qualcomm's own custom 'Oryon' cores from its Nuvia acquisition", "It was the first Snapdragon with efficiency cores", "It dropped the integrated modem"],
       "correctIndex": 1,
-      "explanation": "The Snapdragon 8 Elite was the first phone SoC to use Qualcomm's custom Oryon CPU — designed by the Nuvia team Qualcomm acquired — abandoning stock ARM Cortex cores and even dropping little cores, with two prime cores reaching 4.32 GHz."
+      "explanation": "The Snapdragon 8 Elite was the first phone SoC to use Qualcomm's custom Oryon CPU (designed by the Nuvia team Qualcomm acquired), abandoning stock ARM Cortex cores and even dropping little cores, with two prime cores reaching 4.32 GHz."
     },
     {
       "id": "q-ai-8",
@@ -254,7 +254,7 @@
       "question": "How did Apple's A19 Pro (2025, iPhone 17 Pro) accelerate on-device AI beyond the Neural Engine?",
       "options": ["By adding a second Neural Engine", "By embedding matrix-multiply 'Neural Accelerators' inside every GPU core", "By moving inference to the cloud", "By switching the NPU to a 2nm process"],
       "correctIndex": 1,
-      "explanation": "The A19 Pro's GPU added dedicated tensor units — 'Neural Accelerators' — inside each GPU core, optimized for the matrix multiplications in ML workloads, roughly multiplying peak AI compute over the A18 Pro, all on TSMC's N3P 3nm process."
+      "explanation": "The A19 Pro's GPU added dedicated tensor units, called 'Neural Accelerators', inside each GPU core, optimized for the matrix multiplications in ML workloads, roughly multiplying peak AI compute over the A18 Pro, all on TSMC's N3P 3nm process."
     }
   ]
 }
