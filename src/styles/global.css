@@ -431,120 +431,226 @@ label:has(input.sr-only:focus-visible) {
 }
 
 /* ── Class template chrome: HomepageLayout.astro / ExhibitLayout.astro ──
-   These locked layouts ship with classes (.titleheading, .toc__list,
-   .header, .article, etc.) that our custom Tailwind theme never defined,
-   since our own pages use BaseLayout instead. Styled here per each locked
-   layout's own instruction ("work must be added to the styles/ directory"). */
+   Ported verbatim from the original DLSU-Archcraft/virtual-exhibit-template
+   global.css (the locked stylesheet these layouts were built against),
+   since our own custom Tailwind theme never defined these classes. Scoped
+   with :has() so it only activates on pages that actually render the
+   locked layouts, leaving our own BaseLayout pages untouched. */
 :root {
-  --template-card-bg: #ffffff;
-  --template-card-text: #1c1c22;
-  --template-muted: #6b6b76;
-  --template-link: #3355a8;
+  --tpl-accent: #5076a7;
+  --tpl-bg1: #e2e2e2;
+  --tpl-bg2: #ffffff;
+  --tpl-text: #1e1e1e;
+  --tpl-muted: #646464;
+  --tpl-border: #cecece;
+  --tpl-radius: 8px;
+  --tpl-small: 0.8rem;
+}
+
+/* https://css-pattern.com/cubes-illusion/ */
+html:has(.titleheading),
+html:has(.header__titleblock) {
+  --s: 200px;
+  --tpl-c1: #2c2c2c;
+  --tpl-c2: #464148;
+  --tpl-c3: #3c3738;
+
+  background:
+    repeating-conic-gradient(from 30deg, #0000 0 120deg, var(--tpl-c3) 0 50%)
+      calc(var(--s) / 2) calc(var(--s) * tan(30deg) / 2),
+    repeating-conic-gradient(
+      from 30deg,
+      var(--tpl-c1) 0 60deg,
+      var(--tpl-c2) 0 120deg,
+      var(--tpl-c3) 0 50%
+    );
+  background-size: var(--s) calc(var(--s) * tan(30deg));
 }
 
 body:has(.titleheading),
 body:has(.header__titleblock) {
-  background-color: #2b2b33;
-  background-image:
-    linear-gradient(135deg, rgba(255,255,255,0.035) 25%, transparent 25%),
-    linear-gradient(225deg, rgba(255,255,255,0.035) 25%, transparent 25%),
-    linear-gradient(45deg, rgba(255,255,255,0.035) 25%, transparent 25%),
-    linear-gradient(315deg, rgba(255,255,255,0.035) 25%, transparent 25%);
-  background-position: 40px 0, 40px 0, 0 0, 0 0;
-  background-size: 80px 80px;
-  background-repeat: repeat;
+  color: var(--tpl-text);
+  font-family: "Noto Sans Variable", sans-serif;
+  line-height: 1.5;
+  flex-direction: column;
+  display: flex;
   min-height: 100vh;
 }
 
-.titleheading {
-  text-align: center;
-  padding: 72px 20px 40px;
-  color: #fff;
-}
-.titleheading .title {
-  font-family: 'Lora Variable', serif;
-  font-size: clamp(2rem, 5vw, 3.25rem);
-  font-weight: 700;
-  margin: 0;
-  text-shadow: 0 4px 14px rgba(0,0,0,0.5);
-}
+.titleheading .title,
 .titleheading .subtitle {
-  font-size: 1.1rem;
-  color: rgba(255,255,255,0.72);
-  margin-top: 6px;
+  margin-bottom: 0;
+  color: var(--tpl-bg2);
+  text-align: center;
+  font-size: 3rem;
+  font-family: "Lora Variable";
+  text-shadow: 5px 5px 0px var(--tpl-text);
 }
+
+.titleheading .subtitle {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.header {
+  align-items: center;
+  justify-content: space-between;
+  color: var(--tpl-text);
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+}
+
+.header__titleblock {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.header__subtitle {
+  font-size: var(--tpl-small);
+  opacity: 0.8;
+}
+
+.button {
+  align-items: center;
+  background-color: var(--tpl-bg2);
+  border-radius: 100px;
+  border: 2px solid var(--tpl-border);
+  color: var(--tpl-text);
+  display: inline-flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  text-decoration: none;
+  transition: border-color 0.1s ease;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.button:hover {
+  border-color: var(--tpl-accent);
+  color: var(--tpl-accent);
+}
+
+/* Main body */
 
 main.content {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px 60px;
-}
-
-nav.toc {
-  background: var(--template-card-bg);
-  color: var(--template-card-text);
-  border-radius: 10px;
-  padding: 32px 40px;
-  box-shadow: 0 20px 46px rgba(0,0,0,0.45);
-}
-nav.toc h2 {
-  font-size: 1.4rem;
-  border-bottom: 1px solid #e2e2e6;
-  padding-bottom: 12px;
-  margin: 0 0 20px;
-}
-.toc__list { list-style: decimal; padding-left: 22px; margin: 0; }
-.toc__item { color: var(--template-card-text); }
-.toc__item a { color: var(--template-link); text-decoration: underline; }
-.toc__item a:hover { opacity: 0.8; }
-.toc__item span { color: var(--template-muted); }
-
-/* ── ExhibitLayout (entry/sub-pages using the locked layout, e.g. linux.mdx) ── */
-.header {
-  background: var(--template-card-bg);
-  color: var(--template-card-text);
-  padding: 18px 20px;
   display: flex;
-  justify-content: center;
+  flex-direction: column-reverse;
+  gap: 1rem;
+  max-width: 100%;
+  margin: auto;
+  padding: 0 1.5rem;
+  flex: 1;
 }
-.header__titleblock {
-  max-width: 900px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.header__subtitle { color: var(--template-muted); margin-left: auto; font-size: 0.9rem; }
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  color: var(--template-card-text);
-}
-.button:hover { background: rgba(0,0,0,0.06); }
 
 .content__block {
-  background: var(--template-card-bg);
-  color: var(--template-card-text);
-  border-radius: 10px;
-  padding: 32px 40px;
-  box-shadow: 0 20px 46px rgba(0,0,0,0.45);
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  flex: 3;
 }
-.content__titlemeta { margin-bottom: 20px; border-bottom: 1px solid #e2e2e6; padding-bottom: 16px; }
-.content__titlemeta span { color: var(--template-muted); font-size: 0.9rem; }
-.article { line-height: 1.7; }
-.article img { max-width: 100%; border-radius: 6px; }
+
+.content__titlemeta {
+  text-align: center;
+}
+
+.content__titlemeta h1 {
+  margin-top: 0;
+  font-family: "Lora Variable";
+}
+
+/* Main exhibit article content */
+
+.header__titleblock,
+.article,
+.content__titlemeta,
+.exhibitlink {
+  background: var(--tpl-bg2);
+  border: 1px solid var(--tpl-border);
+  border-radius: var(--tpl-radius);
+  padding: 2rem;
+  box-shadow: 5px 5px;
+}
+
+.header__titleblock {
+  flex: 1;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.article h2,
+.article h3,
+.article h4,
+.article h5,
+.article h6 {
+  font-family: "Lora Variable";
+  border-bottom: 1px solid var(--tpl-border);
+}
+
+/* Table of contents */
+
+nav.toc {
+  background: var(--tpl-bg2);
+  border: 1px solid var(--tpl-border);
+  border-radius: var(--tpl-radius);
+  flex: 1;
+  height: fit-content;
+  padding: 2rem;
+  box-shadow: 5px 5px;
+}
+
+.padder {
+  box-shadow: none;
+  visibility: hidden;
+}
+
+nav.toc h2 {
+  border-bottom: 1px solid var(--tpl-border);
+  font-family: "Lora Variable";
+  margin-top: 0;
+  padding-bottom: 0.5rem;
+}
+
+.toc__list {
+  list-style: decimal;
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.toc__item a {
+  color: var(--tpl-accent);
+  text-decoration-style: dotted;
+}
+
+.toc__item a:hover {
+  text-decoration: underline;
+}
 
 body:has(.titleheading) footer,
 body:has(.header__titleblock) footer {
-  background: #17171c;
-  color: rgba(255,255,255,0.6);
   text-align: center;
-  padding: 20px;
-  margin-top: 40px;
+  padding: 2rem;
+  font-size: var(--tpl-small);
+  background-color: var(--tpl-text);
+  color: var(--tpl-bg1);
+  margin-top: 4rem;
+}
+
+@media (min-width: 1100px) {
+  body:has(.titleheading) main.content,
+  body:has(.header__titleblock) main.content {
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  body:has(.titleheading) nav.toc,
+  body:has(.header__titleblock) nav.toc {
+    position: sticky;
+    top: 2rem;
+  }
 }
 
 /* ── View Transitions ─────────────────────────────────────── */
