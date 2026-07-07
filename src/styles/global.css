@@ -430,6 +430,123 @@ label:has(input.sr-only:focus-visible) {
   .circuit-svg .circuit-anim { display: none; }
 }
 
+/* ── Class template chrome: HomepageLayout.astro / ExhibitLayout.astro ──
+   These locked layouts ship with classes (.titleheading, .toc__list,
+   .header, .article, etc.) that our custom Tailwind theme never defined,
+   since our own pages use BaseLayout instead. Styled here per each locked
+   layout's own instruction ("work must be added to the styles/ directory"). */
+:root {
+  --template-card-bg: #ffffff;
+  --template-card-text: #1c1c22;
+  --template-muted: #6b6b76;
+  --template-link: #3355a8;
+}
+
+body:has(.titleheading),
+body:has(.header__titleblock) {
+  background-color: #2b2b33;
+  background-image:
+    linear-gradient(135deg, rgba(255,255,255,0.035) 25%, transparent 25%),
+    linear-gradient(225deg, rgba(255,255,255,0.035) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(255,255,255,0.035) 25%, transparent 25%),
+    linear-gradient(315deg, rgba(255,255,255,0.035) 25%, transparent 25%);
+  background-position: 40px 0, 40px 0, 0 0, 0 0;
+  background-size: 80px 80px;
+  background-repeat: repeat;
+  min-height: 100vh;
+}
+
+.titleheading {
+  text-align: center;
+  padding: 72px 20px 40px;
+  color: #fff;
+}
+.titleheading .title {
+  font-family: 'Lora Variable', serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 4px 14px rgba(0,0,0,0.5);
+}
+.titleheading .subtitle {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.72);
+  margin-top: 6px;
+}
+
+main.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+nav.toc {
+  background: var(--template-card-bg);
+  color: var(--template-card-text);
+  border-radius: 10px;
+  padding: 32px 40px;
+  box-shadow: 0 20px 46px rgba(0,0,0,0.45);
+}
+nav.toc h2 {
+  font-size: 1.4rem;
+  border-bottom: 1px solid #e2e2e6;
+  padding-bottom: 12px;
+  margin: 0 0 20px;
+}
+.toc__list { list-style: decimal; padding-left: 22px; margin: 0; }
+.toc__item { color: var(--template-card-text); }
+.toc__item a { color: var(--template-link); text-decoration: underline; }
+.toc__item a:hover { opacity: 0.8; }
+.toc__item span { color: var(--template-muted); }
+
+/* ── ExhibitLayout (entry/sub-pages using the locked layout, e.g. linux.mdx) ── */
+.header {
+  background: var(--template-card-bg);
+  color: var(--template-card-text);
+  padding: 18px 20px;
+  display: flex;
+  justify-content: center;
+}
+.header__titleblock {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.header__subtitle { color: var(--template-muted); margin-left: auto; font-size: 0.9rem; }
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  color: var(--template-card-text);
+}
+.button:hover { background: rgba(0,0,0,0.06); }
+
+.content__block {
+  background: var(--template-card-bg);
+  color: var(--template-card-text);
+  border-radius: 10px;
+  padding: 32px 40px;
+  box-shadow: 0 20px 46px rgba(0,0,0,0.45);
+}
+.content__titlemeta { margin-bottom: 20px; border-bottom: 1px solid #e2e2e6; padding-bottom: 16px; }
+.content__titlemeta span { color: var(--template-muted); font-size: 0.9rem; }
+.article { line-height: 1.7; }
+.article img { max-width: 100%; border-radius: 6px; }
+
+body:has(.titleheading) footer,
+body:has(.header__titleblock) footer {
+  background: #17171c;
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
 /* ── View Transitions ─────────────────────────────────────── */
 @keyframes vt-fade-out { to { opacity: 0; } }
 @keyframes vt-fade-in { from { opacity: 0; } }
