@@ -1,13 +1,18 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+layout: '../layouts/BaseLayout.astro'
+title: "Home"
+description: "Silicon Minds: An interactive journey through the evolution of the mobile microprocessor."
+---
+
 import ChipFloat from '../components/ChipFloat.astro';
 import { getCollection } from 'astro:content';
+import '../styles/silicon-minds-home.css';
 
-const erasRaw = await getCollection('eras');
-const eras = erasRaw.map(e => e.data).sort((a, b) => a.order - b.order);
-const base = import.meta.env.BASE_URL;
+export const erasRaw = await getCollection('eras');
+export const eras = erasRaw.map(e => e.data).sort((a, b) => a.order - b.order);
+export const base = import.meta.env.BASE_URL;
 
-const ERA_COLORS: Record<string, string> = {
+export const ERA_COLORS = {
   'birth-of-mobile-cpus': '#22D3EE',
   'arm-revolution': '#34D399',
   'multicore-era': '#F59E0B',
@@ -15,33 +20,30 @@ const ERA_COLORS: Record<string, string> = {
   'ai-efficiency-era': '#F472B6',
 };
 
-const stats = [
+export const stats = [
   { value: 5,  suffix: '',  label: 'Eras of Innovation', icon: 'layers' },
   { value: 30, suffix: '+', label: 'Processors Documented', icon: 'cpu' },
   { value: 30, suffix: '',  label: 'Years of History', icon: 'clock' },
   { value: 3,  suffix: '',  label: 'Interactive Exhibits', icon: 'zap' },
 ];
----
 
-<BaseLayout title="Home" description="Silicon Minds: An interactive journey through the evolution of the mobile microprocessor.">
-
-  <!-- ── Hero ──────────────────────────────────────────────── -->
+  
   <section
     class="relative flex flex-col items-center justify-center text-center px-5 overflow-hidden"
     style="min-height: 92vh;"
     aria-labelledby="hero-heading"
   >
-    <!-- Atmospheric layers -->
+    
     <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
-      <!-- centered spotlight -->
+      
       <div style="position:absolute; inset:0; background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(0,229,255,0.07) 0%, transparent 70%);"></div>
-      <!-- era-colored orbs -->
+      
       <div class="animate-pulse-slow" style="position:absolute; width:620px; height:460px; top:50%; left:50%; transform:translate(-58%,-62%); background:radial-gradient(ellipse, rgba(34,211,238,0.06) 0%, transparent 70%); border-radius:50%;"></div>
       <div class="animate-pulse-slow delay-400" style="position:absolute; width:520px; height:420px; top:50%; left:50%; transform:translate(8%,-28%); background:radial-gradient(ellipse, rgba(167,139,250,0.055) 0%, transparent 70%); border-radius:50%;"></div>
-      <!-- scan line at 40% -->
+      
       <div class="animate-scan" style="position:absolute; top:40%; left:0; right:0; height:1px; background:linear-gradient(to right, transparent, rgba(0,229,255,0.5), transparent);"></div>
 
-      <!-- floating chips -->
+      
       <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="rgba(34,211,238,0.35)" stroke-width="1" style="position:absolute; top:18%; left:14%; animation: drift-1 14s ease-in-out infinite alternate;">
         <rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5"/>
       </svg>
@@ -56,7 +58,7 @@ const stats = [
       </svg>
     </div>
 
-    <!-- Content -->
+    
     <div class="relative z-10 max-w-4xl mx-auto">
       <div class="animate-fade-up flex justify-center" style="animation-delay:40ms; animation-fill-mode:both;">
         <span style="filter:drop-shadow(0 18px 36px rgba(0,0,0,0.6)); margin-bottom:18px;">
@@ -90,29 +92,29 @@ const stats = [
       </p>
 
       <div class="animate-fade-up delay-600 flex flex-row flex-wrap items-center justify-center gap-3">
-        <a href={`${base}explore`} class="btn-primary" style="font-size:17px; padding:13px 28px;">
+        <a href={`${base}silicon-minds/explore`} class="btn-primary" style="font-size:17px; padding:13px 28px;">
           Enter Exhibit
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href={`${base}timeline`} class="btn-ghost" style="font-size:17px; padding:13px 28px;">
+        <a href={`${base}silicon-minds/timeline`} class="btn-ghost" style="font-size:17px; padding:13px 28px;">
           View Timeline
         </a>
       </div>
     </div>
 
-    <!-- Scroll cue -->
+    
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in delay-800" aria-hidden="true">
       <span class="font-mono uppercase" style="font-size:12px; letter-spacing:0.25em; color:var(--text-secondary);">Scroll</span>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="animate-float" style="color:var(--text-secondary);"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </div>
   </section>
 
-  <!-- ── Stats strip ───────────────────────────────────────── -->
+  
   <section
     aria-label="Key statistics"
     style="position:relative; border-bottom:1px solid var(--border-subtle); background:rgba(15,15,28,0.5);"
   >
-    <!-- lit top edge -->
+    
     <div aria-hidden="true" style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(to right, transparent, var(--ui-primary) 30%, var(--ui-primary) 70%, transparent); opacity:0.5;"></div>
 
     <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -138,7 +140,7 @@ const stats = [
     </div>
   </section>
 
-  <!-- ── Five eras ─────────────────────────────────────────── -->
+  
   <section class="max-w-7xl mx-auto px-5 sm:px-8 py-24">
     <header class="mb-12 reveal">
       <span class="section-label mb-3">The Collection</span>
@@ -158,12 +160,12 @@ const stats = [
         const c = ERA_COLORS[era.id];
         return (
           <a
-            href={`${base}explore#${era.id}`}
+            href={`${base}silicon-minds/explore#${era.id}`}
             class={`era-card card-interactive flex-none w-[220px] md:w-auto snap-start flex flex-col group reveal reveal-delay-${Math.min(i + 1, 5)} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary`}
             aria-label={`Era ${era.order}: ${era.name}, ${era.period}`}
             style={`--c:${c}; border-top:3px solid ${c}; padding:0; overflow:hidden;`}
           >
-            <!-- Floating chip header -->
+            
             <div style={`position:relative; height:140px; display:flex; align-items:center; justify-content:center; overflow:visible; background:radial-gradient(ellipse 60% 70% at 50% 45%, ${c}14, transparent 70%);`}>
               <span aria-hidden="true" class="font-heading font-bold" style={`position:absolute; top:8px; right:14px; font-size:50px; line-height:1; color:${c}; opacity:0.1;`}>
                 {String(era.order).padStart(2, '0')}
@@ -173,7 +175,7 @@ const stats = [
               </span>
             </div>
 
-            <!-- Content -->
+            
             <div class="flex flex-col gap-2.5" style="padding:18px;">
               <h3 class="era-card-title font-heading font-bold transition-colors duration-200" style="font-size:18px; line-height:1.25; letter-spacing:-0.01em; color:var(--text-primary);">
                 {era.name}
@@ -193,13 +195,13 @@ const stats = [
     </div>
   </section>
 
-  <!-- ── Featured full-bleed band ──────────────────────────── -->
+  
   <section
     aria-label="Inside the silicon"
     class="relative reveal"
     style="min-height:440px; display:flex; align-items:center; overflow:hidden; border-top:1px solid var(--border-subtle); border-bottom:1px solid var(--border-subtle);"
   >
-    <!-- giant floating chip, bleeding off the right edge -->
+    
     <div aria-hidden="true" class="hidden md:block" style="position:absolute; right:-40px; top:50%; transform:translateY(-50%); opacity:0.9;">
       <div style="position:absolute; inset:-80px; background:radial-gradient(ellipse, rgba(167,139,250,0.16), transparent 65%); border-radius:50%;"></div>
       <span style="position:relative; filter:drop-shadow(0 24px 50px rgba(0,0,0,0.6));">
@@ -236,7 +238,7 @@ const stats = [
     </div>
   </section>
 
-  <!-- ── Interactive exhibits (bento) ──────────────────────── -->
+  
   <section style="border-top:1px solid var(--border-subtle); background:rgba(15,15,28,0.35);">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 py-24">
       <header class="mb-14 text-center reveal">
@@ -251,7 +253,7 @@ const stats = [
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
 
-        <!-- Timeline, spans 2 cols -->
+        
         <div class="card relative md:col-span-2 flex flex-col gap-5 reveal reveal-delay-1" style="background:linear-gradient(135deg, rgba(0,229,255,0.03), transparent 60%);">
           <span class="pill" style="position:absolute; top:18px; right:18px; color:var(--ui-primary); border-color:rgba(0,229,255,0.25);">
             <span style="width:5px; height:5px; border-radius:99px; background:var(--ui-primary); display:inline-block;"></span>LIVE
@@ -265,10 +267,10 @@ const stats = [
               Click any processor node to inspect its full specs. Select two to compare side-by-side, with relative spec bars and a 2024 performance benchmark. Filter by era.
             </p>
           </div>
-          <a href={`${base}timeline`} class="btn-primary self-start" style="font-size:15px; padding:8px 18px;">Explore →</a>
+          <a href={`${base}silicon-minds/timeline`} class="btn-primary self-start" style="font-size:15px; padding:8px 18px;">Explore →</a>
         </div>
 
-        <!-- Simulator -->
+        
         <div class="card relative flex flex-col gap-5 reveal reveal-delay-2" style="background:linear-gradient(135deg, rgba(123,97,255,0.03), transparent 60%);">
           <span class="pill" style="position:absolute; top:18px; right:18px; color:var(--ui-secondary); border-color:rgba(123,97,255,0.25);">
             <span style="width:5px; height:5px; border-radius:99px; background:var(--ui-secondary); display:inline-block;"></span>INTERACTIVE
@@ -282,10 +284,10 @@ const stats = [
               Pick two eras and watch a workload race across generations.
             </p>
           </div>
-          <a href={`${base}explore#simulator`} class="btn-secondary self-start" style="font-size:15px; padding:8px 18px;">Simulate →</a>
+          <a href={`${base}silicon-minds/explore#simulator`} class="btn-secondary self-start" style="font-size:15px; padding:8px 18px;">Simulate →</a>
         </div>
 
-        <!-- Quiz -->
+        
         <div class="card relative flex flex-col gap-5 reveal reveal-delay-3" style="background:linear-gradient(135deg, rgba(244,114,182,0.03), transparent 60%);">
           <span class="pill" style="position:absolute; top:18px; right:18px; color:#F472B6; border-color:rgba(244,114,182,0.25);">
             <span style="width:5px; height:5px; border-radius:99px; background:#F472B6; display:inline-block;"></span>INTERACTIVE
@@ -299,31 +301,9 @@ const stats = [
               15 questions from all five eras. Per-era scoring shows where to study up.
             </p>
           </div>
-          <a href={`${base}explore#quiz`} class="btn-primary self-start" style="font-size:15px; padding:8px 18px;">Start Quiz →</a>
+          <a href={`${base}silicon-minds/explore#quiz`} class="btn-primary self-start" style="font-size:15px; padding:8px 18px;">Start Quiz →</a>
         </div>
 
       </div>
     </div>
   </section>
-
-</BaseLayout>
-
-<style>
-  /* Hide era-strip scrollbar */
-  .flex.overflow-x-auto::-webkit-scrollbar { height: 0; display: none; }
-
-  /* Era card hover: tint bg + lift the top border glow + zoom image */
-  .era-card:hover {
-    border-color: color-mix(in srgb, var(--c) 30%, transparent);
-    box-shadow: 0 -2px 18px -4px var(--c), 0 10px 36px rgba(0,0,0,0.5);
-  }
-  .era-card:hover .era-card-title { color: var(--c); }
-  .era-chip { display: inline-block; transition: transform 320ms var(--ease); }
-  .era-card:hover .era-chip { transform: scale(1.08); }
-
-  /* CTAs stack only on very narrow screens */
-  @media (max-width: 360px) {
-    section[aria-labelledby="hero-heading"] .flex-row { flex-direction: column; width: 100%; }
-    section[aria-labelledby="hero-heading"] .flex-row > a { width: 100%; justify-content: center; }
-  }
-</style>

@@ -1,7 +1,7 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import TimelineExplorer from '../components/TimelineExplorer';
+import TimelineExplorer from '../../components/TimelineExplorer';
 
 const erasRaw = await getCollection('eras');
 const eras = erasRaw.map(e => e.data).sort((a, b) => a.order - b.order);

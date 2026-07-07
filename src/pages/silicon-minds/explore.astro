@@ -1,9 +1,9 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ChipFloat from '../components/ChipFloat.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ChipFloat from '../../components/ChipFloat.astro';
 import { getCollection } from 'astro:content';
-import EvolutionSimulator from '../components/EvolutionSimulator';
-import TriviaQuiz from '../components/TriviaQuiz';
+import EvolutionSimulator from '../../components/EvolutionSimulator';
+import TriviaQuiz from '../../components/TriviaQuiz';
 
 const erasRaw = await getCollection('eras');
 const eras = erasRaw.map(e => e.data).sort((a, b) => a.order - b.order);
@@ -120,7 +120,7 @@ const ERA_CAPTIONS: Record<string, string> = {
                 {eraProcessors.map(proc => (
                   <li>
                     <a
-                      href={`${base}timeline#${proc.id}`}
+                      href={`${base}silicon-minds/timeline#${proc.id}`}
                       class="proc-card group flex flex-col gap-2 p-4 rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       style={`--c:${c}; border:1px solid var(--border-subtle); background:var(--bg-surface);`}
                       aria-label={`View ${proc.name} in timeline`}
@@ -141,7 +141,7 @@ const ERA_CAPTIONS: Record<string, string> = {
             </div>
 
             <div class="sm:pl-[44px]">
-              <a href={`${base}timeline?era=${era.id}`} class="btn-primary" style="font-size:15px; padding:8px 18px;">
+              <a href={`${base}silicon-minds/timeline?era=${era.id}`} class="btn-primary" style="font-size:15px; padding:8px 18px;">
                 View in Timeline →
               </a>
             </div>

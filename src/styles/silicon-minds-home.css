@@ -1,0 +1,17 @@
+/* Hide era-strip scrollbar */
+.flex.overflow-x-auto::-webkit-scrollbar { height: 0; display: none; }
+
+/* Era card hover: tint bg + lift the top border glow + zoom image */
+.era-card:hover {
+  border-color: color-mix(in srgb, var(--c) 30%, transparent);
+  box-shadow: 0 -2px 18px -4px var(--c), 0 10px 36px rgba(0,0,0,0.5);
+}
+.era-card:hover .era-card-title { color: var(--c); }
+.era-chip { display: inline-block; transition: transform 320ms var(--ease); }
+.era-card:hover .era-chip { transform: scale(1.08); }
+
+/* CTAs stack only on very narrow screens */
+@media (max-width: 360px) {
+  section[aria-labelledby="hero-heading"] .flex-row { flex-direction: column; width: 100%; }
+  section[aria-labelledby="hero-heading"] .flex-row > a { width: 100%; justify-content: center; }
+}

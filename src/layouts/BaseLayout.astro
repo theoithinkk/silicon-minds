@@ -13,15 +13,15 @@ const base = import.meta.env.BASE_URL;
 // Active nav detection
 const path = Astro.url.pathname.replace(base.replace(/\/$/, ''), '') || '/';
 const isActive = (href: string) => {
-  if (href === '/') return path === '/' || path === '';
+  if (href === '/silicon-minds') return path === '/silicon-minds' || path === '/silicon-minds/';
   return path.startsWith(href);
 };
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/explore', label: 'Explore' },
-  { href: '/timeline', label: 'Timeline' },
-  { href: '/about', label: 'About' },
+  { href: '/silicon-minds', label: 'Home' },
+  { href: '/silicon-minds/explore', label: 'Explore' },
+  { href: '/silicon-minds/timeline', label: 'Timeline' },
+  { href: '/silicon-minds/about', label: 'About' },
 ];
 ---
 
@@ -130,7 +130,7 @@ const navLinks = [
 
         <!-- Logo -->
         <a
-          href={base}
+          href={`${base}silicon-minds`}
           class="flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
           aria-label="Silicon Minds home"
         >
@@ -174,7 +174,7 @@ const navLinks = [
             </a>
           ))}
           <a
-            href={`${base}explore`}
+            href={`${base}silicon-minds/explore`}
             class="btn-primary ml-3 py-2 px-4 text-xs"
             style="padding: 7px 16px; font-size: 14px; letter-spacing: 0.05em;"
           >
@@ -213,7 +213,7 @@ const navLinks = [
             {link.label}
           </a>
         ))}
-        <a href={`${base}explore`} class="btn-primary text-sm text-center mt-3 justify-center">
+        <a href={`${base}silicon-minds/explore`} class="btn-primary text-sm text-center mt-3 justify-center">
           Enter Exhibit
         </a>
       </nav>
