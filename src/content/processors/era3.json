@@ -9,7 +9,11 @@
     "dieSizeMm2": 49,
     "transistorCount": "260M",
     "processNodeNm": 40,
-    "notableFeature": "First dual-core mobile SoC; debuted in Motorola Atrix 4G"
+    "notableFeature": "First dual-core mobile SoC; debuted in Motorola Atrix 4G",
+    "reference": {
+      "source": "Tegra 2 — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tegra"
+    }
   },
   {
     "id": "apple-a6",
@@ -19,9 +23,13 @@
     "coreConfig": "2× Swift (custom ARMv7s) + PowerVR SGX543MP3",
     "clockSpeedGHz": 1.3,
     "dieSizeMm2": 97,
-    "transistorCount": "1B",
+    "transistorCount": "~1B (est.)",
     "processNodeNm": 32,
-    "notableFeature": "First fully custom Apple CPU microarchitecture; 2× faster than A5"
+    "notableFeature": "First fully custom Apple CPU microarchitecture; ~2× faster than A5",
+    "reference": {
+      "source": "Apple A6 — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apple_A6"
+    }
   },
   {
     "id": "snapdragon-600-apq8064",
@@ -33,7 +41,11 @@
     "dieSizeMm2": 81,
     "transistorCount": "1.3B",
     "processNodeNm": 28,
-    "notableFeature": "Custom Krait cores on 28nm; flagship SoC in HTC One and LG G2"
+    "notableFeature": "Custom Krait cores on 28nm; flagship SoC in the HTC One (M7) and Samsung Galaxy S4",
+    "reference": {
+      "source": "List of Qualcomm Snapdragon SoCs — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/List_of_Qualcomm_Snapdragon_systems_on_chips"
+    }
   },
   {
     "id": "exynos5-dual",
@@ -45,7 +57,11 @@
     "dieSizeMm2": 84,
     "transistorCount": "1.7B",
     "processNodeNm": 32,
-    "notableFeature": "First Cortex-A15 smartphone chip; used in Google Nexus 10"
+    "notableFeature": "First Cortex-A15 smartphone-class chip; used in Google Nexus 10",
+    "reference": {
+      "source": "Exynos — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Exynos"
+    }
   },
   {
     "id": "mediatek-mt6589",
@@ -57,7 +73,11 @@
     "dieSizeMm2": 67,
     "transistorCount": "580M",
     "processNodeNm": 28,
-    "notableFeature": "Brought quad-core 3G smartphones to the sub-$150 market"
+    "notableFeature": "Brought quad-core 3G smartphones to the sub-$150 market",
+    "reference": {
+      "source": "MediaTek — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/MediaTek"
+    }
   },
   {
     "id": "apple-a7",
@@ -67,8 +87,12 @@
     "coreConfig": "2× Cyclone (64-bit ARMv8) + PowerVR G6430",
     "clockSpeedGHz": 1.4,
     "dieSizeMm2": 102,
-    "transistorCount": "1B",
+    "transistorCount": "~1B",
     "processNodeNm": 28,
-    "notableFeature": "First 64-bit mobile SoC; debuted in iPhone 5s, years ahead of Android"
+    "notableFeature": "First 64-bit mobile SoC; debuted in iPhone 5s, years ahead of Android",
+    "reference": {
+      "source": "Apple A7 — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apple_A7"
+    }
   }
 ]

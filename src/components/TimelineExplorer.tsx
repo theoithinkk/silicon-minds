@@ -13,6 +13,7 @@ interface Processor {
   transistorCount: string;
   processNodeNm: number;
   notableFeature: string;
+  reference?: { source: string; url: string };
 }
 
 interface Era {
@@ -181,6 +182,20 @@ function SpecCard({
       <p style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: 14, paddingTop: 14, borderTop: '1px solid var(--border-subtle)' }}>
         {proc.notableFeature}
       </p>
+
+      {proc.reference && (
+        <p style={{ fontSize: 12, marginTop: 10, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.03em' }}>
+          <span style={{ color: 'var(--text-secondary)', opacity: 0.7 }}>Source: </span>
+          <a
+            href={proc.reference.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color, textDecoration: 'underline', textUnderlineOffset: 2 }}
+          >
+            {proc.reference.source}
+          </a>
+        </p>
+      )}
     </motion.div>
   );
 }

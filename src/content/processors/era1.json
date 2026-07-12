@@ -9,7 +9,11 @@
     "dieSizeMm2": 8,
     "transistorCount": "74K",
     "processNodeNm": 350,
-    "notableFeature": "Thumb 16-bit ISA halved code size for ROM-constrained devices"
+    "notableFeature": "Thumb 16-bit ISA halved code size for ROM-constrained devices",
+    "reference": {
+      "source": "ARM7 (ARM7TDMI) — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/ARM7"
+    }
   },
   {
     "id": "strongarm-sa110",
@@ -21,7 +25,11 @@
     "dieSizeMm2": 50,
     "transistorCount": "2.5M",
     "processNodeNm": 350,
-    "notableFeature": "First high-performance ARM for handheld PDAs; used in early iPAQs"
+    "notableFeature": "First high-performance ARM for handhelds; powered the Apple Newton MessagePad 2000/2100",
+    "reference": {
+      "source": "StrongARM — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/StrongARM"
+    }
   },
   {
     "id": "dragonball-ez",
@@ -33,7 +41,11 @@
     "dieSizeMm2": 28,
     "transistorCount": "900K",
     "processNodeNm": 500,
-    "notableFeature": "Powered the Palm Pilot; extreme low power at 16 MHz"
+    "notableFeature": "Powered the Palm III; extreme low power at 16 MHz",
+    "reference": {
+      "source": "DragonBall — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/DragonBall"
+    }
   },
   {
     "id": "ti-omap1",
@@ -45,19 +57,27 @@
     "dieSizeMm2": 65,
     "transistorCount": "15M",
     "processNodeNm": 180,
-    "notableFeature": "First OMAP: paired ARM application core with dedicated DSP for voice/audio"
+    "notableFeature": "First OMAP: paired ARM application core with dedicated DSP for voice/audio",
+    "reference": {
+      "source": "OMAP — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/OMAP"
+    }
   },
   {
     "id": "qualcomm-msm3100",
     "name": "Qualcomm MSM3100",
     "eraId": "birth-of-mobile-cpus",
     "cores": 1,
-    "coreConfig": "1× ARM9 + baseband DSP",
+    "coreConfig": "1× ARM7TDMI + baseband DSP",
     "clockSpeedGHz": 0.128,
     "dieSizeMm2": 40,
     "transistorCount": "5M",
     "processNodeNm": 250,
-    "notableFeature": "Integrated CDMA baseband, setting the template for Qualcomm's Snapdragon lineage"
+    "notableFeature": "ARM7-based cdmaOne single-chip modem (1999), setting the template for Qualcomm's MSM lineage",
+    "reference": {
+      "source": "MSM3100 — WikiChip",
+      "url": "https://en.wikichip.org/wiki/qualcomm/msm3100"
+    }
   },
   {
     "id": "xscale-pxa250",
@@ -69,6 +89,10 @@
     "dieSizeMm2": 72,
     "transistorCount": "17M",
     "processNodeNm": 180,
-    "notableFeature": "400 MHz at ~500 mW; backbone of Windows Mobile PDAs and early smartphones"
+    "notableFeature": "400 MHz at ~500 mW; backbone of Windows Mobile PDAs and early smartphones",
+    "reference": {
+      "source": "XScale — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/XScale"
+    }
   }
 ]

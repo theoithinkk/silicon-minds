@@ -27,6 +27,12 @@ const processors = defineCollection({
       transistorCount: z.string(),
       processNodeNm: z.number(),
       notableFeature: z.string(),
+      reference: z
+        .object({
+          source: z.string(),
+          url: z.string().url(),
+        })
+        .optional(),
     })
   ),
 });

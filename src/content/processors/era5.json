@@ -9,7 +9,11 @@
     "dieSizeMm2": 107,
     "transistorCount": "15B",
     "processNodeNm": 5,
-    "notableFeature": "5-core Neural Engine at 15.8 TOPS; powers Cinematic Mode and Live Text"
+    "notableFeature": "5-core Neural Engine at 15.8 TOPS; powers Cinematic Mode and Live Text",
+    "reference": {
+      "source": "Apple A15 Bionic — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apple_A15"
+    }
   },
   {
     "id": "snapdragon-8-gen1",
@@ -21,7 +25,11 @@
     "dieSizeMm2": 136,
     "transistorCount": "12B",
     "processNodeNm": 4,
-    "notableFeature": "Hexagon 32 NPU; first Snapdragon on Samsung 4nm GAAFET-adjacent node"
+    "notableFeature": "Hexagon NPU with a 7th-gen AI engine; built on the Samsung 4nm (4LPE) node",
+    "reference": {
+      "source": "List of Qualcomm Snapdragon SoCs — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/List_of_Qualcomm_Snapdragon_systems_on_chips"
+    }
   },
   {
     "id": "apple-a17-pro",
@@ -33,7 +41,11 @@
     "dieSizeMm2": 88.6,
     "transistorCount": "19B",
     "processNodeNm": 3,
-    "notableFeature": "First 3nm mobile chip (TSMC N3B); hardware ray-tracing GPU and 35 TOPS Neural Engine"
+    "notableFeature": "First 3nm mobile chip (TSMC N3B); hardware ray-tracing GPU and 35 TOPS Neural Engine",
+    "reference": {
+      "source": "Apple A17 Pro — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apple_A17"
+    }
   },
   {
     "id": "snapdragon-8-gen3",
@@ -45,7 +57,11 @@
     "dieSizeMm2": 109,
     "transistorCount": "16B",
     "processNodeNm": 4,
-    "notableFeature": "On-device generative AI; Hexagon NPU delivers 98 TOPS for LLM inference"
+    "notableFeature": "On-device generative AI; Hexagon NPU tuned for large language model inference",
+    "reference": {
+      "source": "List of Qualcomm Snapdragon SoCs — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/List_of_Qualcomm_Snapdragon_systems_on_chips"
+    }
   },
   {
     "id": "dimensity-9300",
@@ -57,7 +73,11 @@
     "dieSizeMm2": 114,
     "transistorCount": "16B",
     "processNodeNm": 4,
-    "notableFeature": "First all-big-core flagship; APU 790 delivers 33 TOPS for on-device LLMs"
+    "notableFeature": "All-big-core flagship; APU 790 accelerates on-device LLMs",
+    "reference": {
+      "source": "MediaTek Dimensity — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/MediaTek_Dimensity"
+    }
   },
   {
     "id": "exynos-2400",
@@ -69,7 +89,11 @@
     "dieSizeMm2": 117,
     "transistorCount": "19B",
     "processNodeNm": 4,
-    "notableFeature": "NPU at 34.7 TOPS; first Exynos GPU (Xclipse 940, AMD RDNA) with hardware ray tracing"
+    "notableFeature": "34.7 TOPS NPU; Xclipse 940 GPU (AMD RDNA3) with hardware ray tracing",
+    "reference": {
+      "source": "Exynos — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Exynos"
+    }
   },
   {
     "id": "apple-a18-pro",
@@ -81,7 +105,11 @@
     "dieSizeMm2": 105,
     "transistorCount": "20B",
     "processNodeNm": 3,
-    "notableFeature": "Second-gen 3nm (TSMC N3E); 16-core Neural Engine at 35 TOPS runs Apple Intelligence on-device"
+    "notableFeature": "Second-gen 3nm (TSMC N3E); 16-core Neural Engine at 35 TOPS runs Apple Intelligence on-device",
+    "reference": {
+      "source": "Apple A18 Pro — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apple_A18"
+    }
   },
   {
     "id": "snapdragon-8-elite",
@@ -93,7 +121,11 @@
     "dieSizeMm2": 125,
     "transistorCount": "Undisclosed",
     "processNodeNm": 3,
-    "notableFeature": "First phone SoC with Qualcomm's own custom Oryon CPU (from Nuvia); TSMC N3E, 2024"
+    "notableFeature": "First phone SoC with Qualcomm's own custom Oryon CPU (from Nuvia); TSMC N3E, 2024",
+    "reference": {
+      "source": "List of Qualcomm Snapdragon SoCs — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/List_of_Qualcomm_Snapdragon_systems_on_chips"
+    }
   },
   {
     "id": "dimensity-9400",
@@ -105,7 +137,11 @@
     "dieSizeMm2": 150,
     "transistorCount": "30B",
     "processNodeNm": 3,
-    "notableFeature": "30 billion transistors on TSMC N3E; second-gen all-big-core with agentic on-device AI"
+    "notableFeature": "TSMC N3E all-big-core design; APU 890 pushes on-device generative AI",
+    "reference": {
+      "source": "MediaTek Dimensity — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/MediaTek_Dimensity"
+    }
   },
   {
     "id": "apple-a19-pro",
@@ -117,7 +153,11 @@
     "dieSizeMm2": 105,
     "transistorCount": "~20B",
     "processNodeNm": 3,
-    "notableFeature": "TSMC N3P; matrix-multiply Neural Accelerators built into every GPU core; single-core leader (iPhone 17 Pro, 2025)"
+    "notableFeature": "TSMC N3P; matrix-multiply Neural Accelerators built into every GPU core (iPhone 17 Pro, 2025)",
+    "reference": {
+      "source": "Apple A19 Pro — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apple_A19"
+    }
   },
   {
     "id": "snapdragon-8-elite-gen5",
@@ -129,7 +169,11 @@
     "dieSizeMm2": 130,
     "transistorCount": "Undisclosed",
     "processNodeNm": 3,
-    "notableFeature": "Highest mobile clock to date at 4.61 GHz; TSMC N3P with on-device agentic AI (2025)"
+    "notableFeature": "Highest mobile clock to date at 4.61 GHz; TSMC N3P with on-device agentic AI (2025)",
+    "reference": {
+      "source": "List of Qualcomm Snapdragon SoCs — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/List_of_Qualcomm_Snapdragon_systems_on_chips"
+    }
   },
   {
     "id": "dimensity-9500",
@@ -141,6 +185,10 @@
     "dieSizeMm2": 140,
     "transistorCount": "~30B",
     "processNodeNm": 3,
-    "notableFeature": "Arm Lumex C1 cores on TSMC N3P; expanded NPU for on-device generative AI (2025)"
+    "notableFeature": "Arm Lumex C1 cores on TSMC N3P; expanded NPU for on-device generative AI (2025)",
+    "reference": {
+      "source": "MediaTek Dimensity — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/MediaTek_Dimensity"
+    }
   }
 ]

@@ -9,7 +9,11 @@
     "dieSizeMm2": 45,
     "transistorCount": "105M",
     "processNodeNm": 65,
-    "notableFeature": "First ARMv7 out-of-order core; launched the smartphone performance era"
+    "notableFeature": "First ARM Cortex-A core; in-order dual-issue superscalar that launched the smartphone performance era",
+    "reference": {
+      "source": "ARM Cortex-A8 — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/ARM_Cortex-A8"
+    }
   },
   {
     "id": "apple-a4",
@@ -21,19 +25,27 @@
     "dieSizeMm2": 53,
     "transistorCount": "150M",
     "processNodeNm": 45,
-    "notableFeature": "Apple's first custom SoC; powered iPhone 4 and original iPad"
+    "notableFeature": "Apple's first custom SoC; powered iPhone 4 and original iPad",
+    "reference": {
+      "source": "Apple A4 — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apple_A4"
+    }
   },
   {
     "id": "snapdragon-s1-msm7227",
     "name": "Qualcomm Snapdragon S1 MSM7227",
     "eraId": "arm-revolution",
     "cores": 1,
-    "coreConfig": "1× Scorpion (ARMv7)",
+    "coreConfig": "1× ARM11 + integrated 3G modem",
     "clockSpeedGHz": 0.6,
     "dieSizeMm2": 55,
     "transistorCount": "95M",
     "processNodeNm": 65,
-    "notableFeature": "Qualcomm's first Snapdragon; integrated 3G modem on-die"
+    "notableFeature": "Low-cost ARM11 Snapdragon S1; on-die 3G modem brought Android to the mass market",
+    "reference": {
+      "source": "List of Qualcomm Snapdragon SoCs — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/List_of_Qualcomm_Snapdragon_systems_on_chips"
+    }
   },
   {
     "id": "samsung-hummingbird",
@@ -45,7 +57,11 @@
     "dieSizeMm2": 40,
     "transistorCount": "110M",
     "processNodeNm": 45,
-    "notableFeature": "PowerVR SGX540 GPU delivered 2× the fillrate of contemporaries; used in Galaxy S"
+    "notableFeature": "PowerVR SGX540 GPU delivered class-leading fillrate; used in the Galaxy S",
+    "reference": {
+      "source": "Exynos (Hummingbird / S5PC110) — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Exynos"
+    }
   },
   {
     "id": "ti-omap3430",
@@ -57,18 +73,26 @@
     "dieSizeMm2": 90,
     "transistorCount": "130M",
     "processNodeNm": 65,
-    "notableFeature": "Heterogeneous compute ahead of its time; used in Nokia N900"
+    "notableFeature": "Heterogeneous compute ahead of its time; used in Nokia N900",
+    "reference": {
+      "source": "OMAP — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/OMAP"
+    }
   },
   {
     "id": "nvidia-tegra1",
-    "name": "Nvidia Tegra 1",
+    "name": "Nvidia Tegra (APX 2500)",
     "eraId": "arm-revolution",
     "cores": 1,
-    "coreConfig": "1× ARM11 + GeForce GPU",
+    "coreConfig": "1× ARM11 + GeForce ULP GPU",
     "clockSpeedGHz": 0.7,
     "dieSizeMm2": 49,
     "transistorCount": "85M",
     "processNodeNm": 65,
-    "notableFeature": "Nvidia's first mobile SoC; emphasized GPU-class graphics for media tablets"
+    "notableFeature": "Nvidia's first mobile SoC; emphasized GPU-class graphics for media devices",
+    "reference": {
+      "source": "Tegra — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tegra"
+    }
   }
 ]

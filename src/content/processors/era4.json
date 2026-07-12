@@ -9,7 +9,11 @@
     "dieSizeMm2": 104,
     "transistorCount": "2B",
     "processNodeNm": 16,
-    "notableFeature": "TSMC 16nm FinFET; 70% faster CPU than A8, 90% faster GPU"
+    "notableFeature": "TSMC 16nm FinFET; 70% faster CPU than A8, 90% faster GPU",
+    "reference": {
+      "source": "Apple A9 — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apple_A9"
+    }
   },
   {
     "id": "snapdragon-820",
@@ -21,7 +25,11 @@
     "dieSizeMm2": 72,
     "transistorCount": "3B",
     "processNodeNm": 14,
-    "notableFeature": "In-house Kryo CPU cores; Adreno 530 GPU set mobile graphics benchmark records"
+    "notableFeature": "In-house Kryo CPU cores; Adreno 530 GPU set mobile graphics benchmark records",
+    "reference": {
+      "source": "List of Qualcomm Snapdragon SoCs — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/List_of_Qualcomm_Snapdragon_systems_on_chips"
+    }
   },
   {
     "id": "exynos-8890",
@@ -33,7 +41,11 @@
     "dieSizeMm2": 95,
     "transistorCount": "4B",
     "processNodeNm": 14,
-    "notableFeature": "Samsung's first in-house CPU microarchitecture (Mongoose); used in Galaxy S7"
+    "notableFeature": "Samsung's first in-house CPU microarchitecture (Mongoose); used in Galaxy S7",
+    "reference": {
+      "source": "Exynos — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Exynos"
+    }
   },
   {
     "id": "kirin-960",
@@ -45,7 +57,11 @@
     "dieSizeMm2": 65,
     "transistorCount": "3B",
     "processNodeNm": 16,
-    "notableFeature": "First mobile SoC with Mali-G71 GPU; doubled Huawei's GPU performance"
+    "notableFeature": "First mobile SoC with Mali-G71 GPU; doubled Huawei's GPU performance",
+    "reference": {
+      "source": "HiSilicon Kirin — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/HiSilicon"
+    }
   },
   {
     "id": "apple-a10-fusion",
@@ -57,7 +73,11 @@
     "dieSizeMm2": 125,
     "transistorCount": "3.3B",
     "processNodeNm": 16,
-    "notableFeature": "First Apple chip with asymmetric core clusters; precursor to the P+E layout"
+    "notableFeature": "First Apple chip with asymmetric core clusters; precursor to the P+E layout",
+    "reference": {
+      "source": "Apple A10 — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apple_A10"
+    }
   },
   {
     "id": "helio-x30",
@@ -69,6 +89,10 @@
     "dieSizeMm2": 89,
     "transistorCount": "2.6B",
     "processNodeNm": 10,
-    "notableFeature": "First mobile 10nm SoC; pioneered tri-cluster heterogeneous CPU layout"
+    "notableFeature": "TSMC 10nm deca-core with a distinctive tri-cluster CPU (A73 + A53 + A35)",
+    "reference": {
+      "source": "MediaTek — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/MediaTek"
+    }
   }
 ]

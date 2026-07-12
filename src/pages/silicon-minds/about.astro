@@ -1,9 +1,23 @@
 ---
 import BaseLayout from '../../layouts/S01_Group5_BaseLayout.astro';
 import ChipFloat from '../../components/ChipFloat.astro';
+import { getCollection } from 'astro:content';
 
 const base = import.meta.env.BASE_URL;
 const ERA_COLORS = ['#22D3EE', '#34D399', '#F59E0B', '#A78BFA', '#F472B6'];
+
+// Build the per-processor reference list, grouped by era, straight from the
+// content collection so it always matches the Timeline Explorer's citations.
+const erasRaw = await getCollection('eras');
+const eras = erasRaw.map(e => e.data).sort((a, b) => a.order - b.order);
+const processorsRaw = await getCollection('processors');
+const allProcessors = processorsRaw.flatMap(e => e.data);
+const refsByEra = eras
+  .map(era => ({
+    era,
+    procs: allProcessors.filter(p => p.eraId === era.id && p.reference),
+  }))
+  .filter(g => g.procs.length > 0);
 ---
 
 <BaseLayout title="About" description="About the Silicon Minds project (DLSU CSARCH2).">
@@ -169,6 +183,48 @@ const ERA_COLORS = ['#22D3EE', '#34D399', '#F59E0B', '#A78BFA', '#F472B6'];
           </div>
         ))}
       </div>
+    </section>
+
+    <!-- References -->
+    <section aria-labelledby="refs-heading" class="mb-12">
+      <h2 id="refs-heading" class="font-heading font-bold text-2xl text-text-primary mb-1">References</h2>
+      <p class="text-text-secondary text-sm mb-6">
+        Specifications for each processor were cross-checked against the sources below,
+        grouped by era. The same citation appears on every chip's card in the Timeline Explorer.
+      </p>
+
+      <div class="space-y-6">
+        {refsByEra.map(({ era, procs }, i) => (
+          <div class="card" style={`border-left:3px solid ${ERA_COLORS[i % ERA_COLORS.length]};`}>
+            <h3 class="font-heading font-semibold text-lg text-text-primary mb-3">
+              {era.name} <span class="text-text-secondary font-mono text-sm">· {era.period}</span>
+            </h3>
+            <ul class="space-y-2" role="list">
+              {procs.map(p => (
+                <li class="text-sm leading-relaxed">
+                  <span class="text-text-primary font-body">{p.name}</span>
+                  <span class="text-text-secondary"> — </span>
+                  <a
+                    href={p.reference.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-mono underline"
+                    style={`color:${ERA_COLORS[i % ERA_COLORS.length]}; text-underline-offset:2px; word-break:break-word;`}
+                  >
+                    {p.reference.source}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-text-secondary text-xs mt-6 font-mono" style="letter-spacing:0.03em; line-height:1.6;">
+        Transistor counts for several recent Qualcomm and Apple parts are not officially
+        disclosed by the vendor; where a figure is an estimate it is marked "~" or "est."
+        and the vendor overview page is cited.
+      </p>
     </section>
 
     <!-- Tech stack -->
