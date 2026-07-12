@@ -5,9 +5,10 @@ import '../styles/global.css';
 export interface Props {
   title: string;
   description?: string;
+  showMovingDots?: boolean;
 }
 
-const { title, description = 'Silicon Minds: The Evolution of the Mobile Microprocessor' } = Astro.props;
+const { title, description = 'Silicon Minds: The Evolution of the Mobile Microprocessor', showMovingDots = false } = Astro.props;
 const base = import.meta.env.BASE_URL;
 
 // Active nav detection
@@ -74,45 +75,49 @@ const navLinks = [
 
       <rect width="1200" height="800" fill="url(#circuit-tile)" />
 
-      <!-- Blinking junction nodes -->
-      <g class="circuit-anim">
-        <circle class="node n1" cx="120"  cy="40"  r="3" fill="#22D3EE"/>
-        <circle class="node n2" cx="320"  cy="240" r="3" fill="#34D399"/>
-        <circle class="node n3" cx="520"  cy="40"  r="3" fill="#22D3EE"/>
-        <circle class="node n4" cx="720"  cy="320" r="3" fill="#A78BFA"/>
-        <circle class="node n5" cx="920"  cy="120" r="3" fill="#F472B6"/>
-        <circle class="node n6" cx="1080" cy="440" r="3" fill="#22D3EE"/>
-        <circle class="node n1" cx="200"  cy="560" r="3" fill="#A78BFA"/>
-        <circle class="node n3" cx="440"  cy="600" r="3" fill="#34D399"/>
-        <circle class="node n5" cx="680"  cy="680" r="3" fill="#22D3EE"/>
-        <circle class="node n2" cx="880"  cy="640" r="3" fill="#F472B6"/>
-        <circle class="node n4" cx="1040" cy="720" r="3" fill="#34D399"/>
-        <circle class="node n6" cx="80"   cy="320" r="3" fill="#F472B6"/>
-      </g>
+      {showMovingDots && (
+        <Fragment>
+          <!-- Blinking junction nodes -->
+          <g class="circuit-anim">
+            <circle class="node n1" cx="120"  cy="40"  r="3" fill="#22D3EE"/>
+            <circle class="node n2" cx="320"  cy="240" r="3" fill="#34D399"/>
+            <circle class="node n3" cx="520"  cy="40"  r="3" fill="#22D3EE"/>
+            <circle class="node n4" cx="720"  cy="320" r="3" fill="#A78BFA"/>
+            <circle class="node n5" cx="920"  cy="120" r="3" fill="#F472B6"/>
+            <circle class="node n6" cx="1080" cy="440" r="3" fill="#22D3EE"/>
+            <circle class="node n1" cx="200"  cy="560" r="3" fill="#A78BFA"/>
+            <circle class="node n3" cx="440"  cy="600" r="3" fill="#34D399"/>
+            <circle class="node n5" cx="680"  cy="680" r="3" fill="#22D3EE"/>
+            <circle class="node n2" cx="880"  cy="640" r="3" fill="#F472B6"/>
+            <circle class="node n4" cx="1040" cy="720" r="3" fill="#34D399"/>
+            <circle class="node n6" cx="80"   cy="320" r="3" fill="#F472B6"/>
+          </g>
 
-      <!-- Data pulses traveling along traces -->
-      <g class="circuit-anim">
-        <circle r="2.6" fill="#22D3EE">
-          <animateMotion path="M-20 40 H1220" dur="6s" begin="0s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="6s" begin="0s" repeatCount="indefinite"/>
-        </circle>
-        <circle r="2.6" fill="#A78BFA">
-          <animateMotion path="M120 820 V-20" dur="7s" begin="1.5s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="7s" begin="1.5s" repeatCount="indefinite"/>
-        </circle>
-        <circle r="2.6" fill="#F472B6">
-          <animateMotion path="M1220 440 H-20" dur="8s" begin="0.8s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="8s" begin="0.8s" repeatCount="indefinite"/>
-        </circle>
-        <circle r="2.6" fill="#34D399">
-          <animateMotion path="M720 820 V-20" dur="6.5s" begin="3s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="6.5s" begin="3s" repeatCount="indefinite"/>
-        </circle>
-        <circle r="2.6" fill="#22D3EE">
-          <animateMotion path="M-20 600 H1220" dur="9s" begin="2.2s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="9s" begin="2.2s" repeatCount="indefinite"/>
-        </circle>
-      </g>
+          <!-- Data pulses traveling along traces -->
+          <g class="circuit-anim">
+            <circle r="2.6" fill="#22D3EE">
+              <animateMotion path="M-20 40 H1220" dur="6s" begin="0s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="6s" begin="0s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="2.6" fill="#A78BFA">
+              <animateMotion path="M120 820 V-20" dur="7s" begin="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="7s" begin="1.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="2.6" fill="#F472B6">
+              <animateMotion path="M1220 440 H-20" dur="8s" begin="0.8s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="8s" begin="0.8s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="2.6" fill="#34D399">
+              <animateMotion path="M720 820 V-20" dur="6.5s" begin="3s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="6.5s" begin="3s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="2.6" fill="#22D3EE">
+              <animateMotion path="M-20 600 H1220" dur="9s" begin="2.2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" dur="9s" begin="2.2s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+        </Fragment>
+      )}
     </svg>
   </div>
 
