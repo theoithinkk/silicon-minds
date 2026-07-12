@@ -24,7 +24,7 @@ const PERFORMANCE: Record<string, number> = {
 
 const ERA_HIGHLIGHTS: Record<string, { cores: string; speed: string; innovation: string }> = {
   'birth-of-mobile-cpus': { cores: '1 core', speed: '≤ 400 MHz', innovation: 'Low-power RISC, Thumb ISA' },
-  'arm-revolution':        { cores: '1 core', speed: '600 MHz – 1 GHz', innovation: 'ARMv7 out-of-order pipeline' },
+  'arm-revolution':        { cores: '1 core', speed: '600 MHz – 1 GHz', innovation: 'ARMv7 Cortex-A, in-order superscalar' },
   'multicore-era':         { cores: '2–4 cores', speed: '1.0 – 1.7 GHz', innovation: 'Multi-core, 64-bit ARMv8' },
   'system-on-chip-era':    { cores: '4–10 cores', speed: '1.85 – 2.6 GHz', innovation: 'Custom µarch, integrated modem' },
   'ai-efficiency-era':     { cores: '6–10 cores', speed: '3.2 – 4.61 GHz', innovation: 'Custom cores + NPU, 3 nm N3P' },

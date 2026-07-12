@@ -30,15 +30,15 @@
       "question": "Which chip is credited with establishing the template for Qualcomm's integrated baseband + application processor approach?",
       "options": ["TI OMAP1", "Intel XScale PXA250", "Qualcomm MSM3100", "ARM7TDMI"],
       "correctIndex": 2,
-      "explanation": "The MSM3100 paired an ARM9 application core with a CDMA baseband DSP on one die, the same integration strategy that would define Snapdragon chips two decades later."
+      "explanation": "The MSM3100 paired an ARM7TDMI application core with a CDMA baseband DSP on one die, the same integration strategy that would define Snapdragon chips two decades later."
     },
     {
       "id": "q-birth-5",
       "eraId": "birth-of-mobile-cpus",
       "question": "What made the Intel StrongARM SA-110 notable in the late 1990s?",
-      "options": ["It was the first chip to exceed 1 GHz", "It was the first high-performance ARM for handhelds, powering early iPAQs", "It introduced the first on-chip GPU", "It used a 65nm process node"],
+      "options": ["It was the first chip to exceed 1 GHz", "It was the first high-performance ARM for handhelds, powering the Apple Newton MessagePad", "It introduced the first on-chip GPU", "It used a 65nm process node"],
       "correctIndex": 1,
-      "explanation": "The StrongARM SA-110 ran at 233 MHz and brought desktop-class performance to Palm-sized PCs and the Compaq iPAQ, remarkable for 350nm silicon in 1996."
+      "explanation": "The StrongARM SA-110 ran at 233 MHz and brought desktop-class performance to handhelds like the Apple Newton MessagePad 2000/2100, remarkable for 350nm silicon in 1996. (The later SA-1110 powered the Compaq iPAQ.)"
     },
     {
       "id": "q-birth-6",
@@ -51,10 +51,10 @@
     {
       "id": "q-arm-1",
       "eraId": "arm-revolution",
-      "question": "Which processor powered the original iPhone (2007)?",
+      "question": "Which processor powered the iPhone 3GS (2009)?",
       "options": ["Qualcomm Snapdragon S1", "Samsung Hummingbird", "ARM Cortex-A8 (Samsung-made)", "Nvidia Tegra 1"],
       "correctIndex": 2,
-      "explanation": "The iPhone used a Samsung-manufactured ARM Cortex-A8 running at 412 MHz (underclocked from 620 MHz for thermals). Apple licensed the core design; they hadn't yet built their own microarchitecture."
+      "explanation": "The iPhone 3GS used a Samsung-manufactured ARM Cortex-A8 at 600 MHz. Apple licensed the core design; the original 2007 iPhone had used an older ARM11, and Apple hadn't yet built its own microarchitecture."
     },
     {
       "id": "q-arm-2",
@@ -78,7 +78,7 @@
       "question": "The ARM Cortex-A8 was the first implementation of which ARM ISA version?",
       "options": ["ARMv5", "ARMv6", "ARMv7-A", "ARMv8-A"],
       "correctIndex": 2,
-      "explanation": "The Cortex-A8 introduced ARMv7-A with a fully out-of-order pipeline and the NEON SIMD extension, enabling the multimedia performance smartphones required."
+      "explanation": "The Cortex-A8 introduced ARMv7-A with an in-order dual-issue superscalar pipeline and the NEON SIMD extension, enabling the multimedia performance smartphones required. (Out-of-order execution arrived with the Cortex-A9.)"
     },
     {
       "id": "q-arm-5",
@@ -94,7 +94,7 @@
       "question": "What was Qualcomm's brand name for the custom ARMv7 CPU core used in early Snapdragon chips?",
       "options": ["Krait", "Kryo", "Scorpion", "Oryon"],
       "correctIndex": 2,
-      "explanation": "The Scorpion core (not a licensed Cortex design) was Qualcomm's first custom microarchitecture, shipping in the MSM7227 and S1 Snapdragons before being succeeded by Krait."
+      "explanation": "The Scorpion core (not a licensed Cortex design) was Qualcomm's first custom microarchitecture, shipping in the QSD8250 (the first 1 GHz phone SoC) and other S1 Snapdragons before being succeeded by Krait."
     },
     {
       "id": "q-multi-1",
@@ -187,10 +187,10 @@
     {
       "id": "q-soc-6",
       "eraId": "system-on-chip-era",
-      "question": "What process node did the MediaTek Helio X30 introduce to mobile SoCs?",
+      "question": "What process node was the MediaTek Helio X30 built on?",
       "options": ["16nm", "12nm", "10nm", "7nm"],
       "correctIndex": 2,
-      "explanation": "The Helio X30 was manufactured on TSMC's 10nm process, the first mobile SoC to use that node, enabling its tri-cluster 10-core design within a reasonable power budget."
+      "explanation": "The Helio X30 was manufactured on TSMC's 10nm process, enabling its tri-cluster 10-core design within a reasonable power budget. (Qualcomm's Snapdragon 835 and Samsung's Exynos 8895 reached 10nm production first, in early 2017.)"
     },
     {
       "id": "q-ai-1",
@@ -235,10 +235,10 @@
     {
       "id": "q-ai-6",
       "eraId": "ai-efficiency-era",
-      "question": "The Samsung Exynos 2400 introduced hardware ray tracing via which GPU?",
+      "question": "The Samsung Exynos 2400's hardware ray tracing runs on which GPU?",
       "options": ["Adreno 750", "Mali-G720", "Xclipse 940 (AMD RDNA)", "PowerVR BXM-8-256"],
       "correctIndex": 2,
-      "explanation": "The Exynos 2400 uses the Xclipse 940, based on AMD's RDNA 3 architecture, the first mobile GPU on an Exynos chip with hardware-accelerated ray tracing."
+      "explanation": "The Exynos 2400 uses the Xclipse 940, based on AMD's RDNA 3 architecture, with hardware-accelerated ray tracing. (Samsung's earlier Exynos 2200 and its RDNA2-based Xclipse 920 first brought ray tracing to Exynos.)"
     },
     {
       "id": "q-ai-7",

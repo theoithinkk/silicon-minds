@@ -417,10 +417,12 @@ function SpecCard({
                         transition: "background 150ms, border-color 150ms",
                     }}
                     onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.background = `${color}22`;
+                        (e.currentTarget as HTMLElement).style.background =
+                            `${color}22`;
                     }}
                     onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.background = `${color}12`;
+                        (e.currentTarget as HTMLElement).style.background =
+                            `${color}12`;
                     }}
                 >
                     <GitCompare size={13} aria-hidden="true" />
@@ -651,147 +653,143 @@ export default function TimelineExplorer({ processors, eras }: Props) {
             {compare !== null &&
                 compare.b !== null &&
                 (() => {
-                        const a = processors.find((p) => p.id === compare.a)!;
-                        const b = processors.find((p) => p.id === compare.b)!;
-                        const ca = ERA_COLORS[a.eraId] ?? "#22D3EE";
-                        const cb = ERA_COLORS[b.eraId] ?? "#22D3EE";
-                        return (
-                            <motion.div
-                                initial={{ opacity: 0, y: -8 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{
-                                    duration: 0.3,
-                                    ease: [0.16, 1, 0.3, 1],
+                    const a = processors.find((p) => p.id === compare.a)!;
+                    const b = processors.find((p) => p.id === compare.b)!;
+                    const ca = ERA_COLORS[a.eraId] ?? "#22D3EE";
+                    const cb = ERA_COLORS[b.eraId] ?? "#22D3EE";
+                    return (
+                        <motion.div
+                            initial={{ opacity: 0, y: -8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{
+                                duration: 0.3,
+                                ease: [0.16, 1, 0.3, 1],
+                            }}
+                            style={{ marginBottom: 32 }}
+                            aria-live="polite"
+                            aria-label="Comparison view"
+                        >
+                            <div
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 10,
+                                    marginBottom: 12,
                                 }}
-                                style={{ marginBottom: 32 }}
-                                aria-live="polite"
-                                aria-label="Comparison view"
                             >
+                                <span
+                                    style={{
+                                        display: "inline-flex",
+                                        alignItems: "center",
+                                        gap: 6,
+                                        fontFamily:
+                                            "'JetBrains Mono', monospace",
+                                        fontSize: 12,
+                                        letterSpacing: "0.15em",
+                                        textTransform: "uppercase",
+                                        color: "var(--text-secondary)",
+                                    }}
+                                >
+                                    <GitCompare size={11} aria-hidden="true" />{" "}
+                                    Comparing
+                                </span>
+                                <button
+                                    onClick={clearCompare}
+                                    style={{
+                                        marginLeft: "auto",
+                                        display: "inline-flex",
+                                        alignItems: "center",
+                                        gap: 5,
+                                        padding: "4px 10px",
+                                        borderRadius: 5,
+                                        border: "1px solid var(--border-mid)",
+                                        background: "transparent",
+                                        color: "var(--text-secondary)",
+                                        fontFamily:
+                                            "'JetBrains Mono', monospace",
+                                        fontSize: 11,
+                                        letterSpacing: "0.1em",
+                                        textTransform: "uppercase",
+                                        cursor: "pointer",
+                                    }}
+                                >
+                                    <X size={11} aria-hidden="true" /> Clear
+                                </button>
+                            </div>
+                            <div
+                                style={{
+                                    display: "grid",
+                                    gridTemplateColumns: "1fr auto 1fr",
+                                    gap: 0,
+                                    alignItems: "stretch",
+                                }}
+                                className="cmp-grid"
+                            >
+                                <SpecCard
+                                    proc={a}
+                                    allProcessors={processors}
+                                    onClose={clearCompare}
+                                    closeRef={(el) => {
+                                        closeRefs.current[a.id] = el;
+                                    }}
+                                    color={ca}
+                                    compareWith={b}
+                                />
+                                {/* VS divider */}
                                 <div
                                     style={{
                                         display: "flex",
+                                        flexDirection: "column",
                                         alignItems: "center",
-                                        gap: 10,
-                                        marginBottom: 12,
+                                        justifyContent: "center",
+                                        padding: "0 14px",
                                     }}
+                                    aria-hidden="true"
                                 >
-                                    <span
-                                        style={{
-                                            display: "inline-flex",
-                                            alignItems: "center",
-                                            gap: 6,
-                                            fontFamily:
-                                                "'JetBrains Mono', monospace",
-                                            fontSize: 12,
-                                            letterSpacing: "0.15em",
-                                            textTransform: "uppercase",
-                                            color: "var(--text-secondary)",
-                                        }}
-                                    >
-                                        <GitCompare
-                                            size={11}
-                                            aria-hidden="true"
-                                        />{" "}
-                                        Comparing
-                                    </span>
-                                    <button
-                                        onClick={clearCompare}
-                                        style={{
-                                            marginLeft: "auto",
-                                            display: "inline-flex",
-                                            alignItems: "center",
-                                            gap: 5,
-                                            padding: "4px 10px",
-                                            borderRadius: 5,
-                                            border: "1px solid var(--border-mid)",
-                                            background: "transparent",
-                                            color: "var(--text-secondary)",
-                                            fontFamily:
-                                                "'JetBrains Mono', monospace",
-                                            fontSize: 11,
-                                            letterSpacing: "0.1em",
-                                            textTransform: "uppercase",
-                                            cursor: "pointer",
-                                        }}
-                                    >
-                                        <X size={11} aria-hidden="true" /> Clear
-                                    </button>
-                                </div>
-                                <div
-                                    style={{
-                                        display: "grid",
-                                        gridTemplateColumns: "1fr auto 1fr",
-                                        gap: 0,
-                                        alignItems: "stretch",
-                                    }}
-                                    className="cmp-grid"
-                                >
-                                    <SpecCard
-                                        proc={a}
-                                        allProcessors={processors}
-                                        onClose={clearCompare}
-                                        closeRef={(el) => {
-                                            closeRefs.current[a.id] = el;
-                                        }}
-                                        color={ca}
-                                        compareWith={b}
-                                    />
-                                    {/* VS divider */}
                                     <div
                                         style={{
-                                            display: "flex",
-                                            flexDirection: "column",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                            padding: "0 14px",
+                                            width: 1,
+                                            flex: 1,
+                                            background: `linear-gradient(to bottom, ${ca}, transparent)`,
                                         }}
-                                        aria-hidden="true"
+                                    />
+                                    <span
+                                        style={{
+                                            fontFamily:
+                                                "'Space Grotesk', sans-serif",
+                                            fontWeight: 700,
+                                            fontSize: 15,
+                                            letterSpacing: "0.1em",
+                                            background: `linear-gradient(135deg, ${ca}, ${cb})`,
+                                            WebkitBackgroundClip: "text",
+                                            WebkitTextFillColor: "transparent",
+                                            padding: "8px 0",
+                                        }}
                                     >
-                                        <div
-                                            style={{
-                                                width: 1,
-                                                flex: 1,
-                                                background: `linear-gradient(to bottom, ${ca}, transparent)`,
-                                            }}
-                                        />
-                                        <span
-                                            style={{
-                                                fontFamily:
-                                                    "'Space Grotesk', sans-serif",
-                                                fontWeight: 700,
-                                                fontSize: 15,
-                                                letterSpacing: "0.1em",
-                                                background: `linear-gradient(135deg, ${ca}, ${cb})`,
-                                                WebkitBackgroundClip: "text",
-                                                WebkitTextFillColor:
-                                                    "transparent",
-                                                padding: "8px 0",
-                                            }}
-                                        >
-                                            VS
-                                        </span>
-                                        <div
-                                            style={{
-                                                width: 1,
-                                                flex: 1,
-                                                background: `linear-gradient(to top, ${cb}, transparent)`,
-                                            }}
-                                        />
-                                    </div>
-                                    <SpecCard
-                                        proc={b}
-                                        allProcessors={processors}
-                                        onClose={clearCompare}
-                                        closeRef={(el) => {
-                                            closeRefs.current[b.id] = el;
+                                        VS
+                                    </span>
+                                    <div
+                                        style={{
+                                            width: 1,
+                                            flex: 1,
+                                            background: `linear-gradient(to top, ${cb}, transparent)`,
                                         }}
-                                        color={cb}
-                                        compareWith={a}
                                     />
                                 </div>
-                            </motion.div>
-                        );
-                    })()}
+                                <SpecCard
+                                    proc={b}
+                                    allProcessors={processors}
+                                    onClose={clearCompare}
+                                    closeRef={(el) => {
+                                        closeRefs.current[b.id] = el;
+                                    }}
+                                    color={cb}
+                                    compareWith={a}
+                                />
+                            </div>
+                        </motion.div>
+                    );
+                })()}
 
             {/* Timeline rows */}
             <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
