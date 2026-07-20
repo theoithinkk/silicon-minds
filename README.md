@@ -475,7 +475,7 @@ Wikipedia contributors. (n.d.). *ARM7 (ARM7TDMI)*. Wikipedia, The Free Encyclope
 
 Wikipedia contributors. (n.d.). *ARM Cortex-A8*. Wikipedia, The Free Encyclopedia. https://en.wikipedia.org/wiki/ARM_Cortex-A8
 
-Wikipedia contributors. (n.d.). *DragonBall (Motorola DragonBall EZ)*. Wikipedia, The Free Encyclopedia. https://en.wikipedia.org/wiki/DragonBall
+Wikipedia contributors. (n.d.). *DragonBall (DragonBall Microcontroller)*. Wikipedia, The Free Encyclopedia. https://en.wikipedia.org/wiki/DragonBall_(microcontroller)
 
 Wikipedia contributors. (n.d.). *Exynos (Samsung Hummingbird / S5PC110, Exynos 5 Dual, Exynos 8890, Exynos 2400)*. Wikipedia, The Free Encyclopedia. https://en.wikipedia.org/wiki/Exynos
 
