@@ -477,3 +477,34 @@ body.circuit-on .circuit-svg .circuit-anim { display: inline; }
 @keyframes vt-fade-in { from { opacity: 0; } }
 ::view-transition-old(root) { animation: 180ms ease-in vt-fade-out; }
 ::view-transition-new(root) { animation: 320ms var(--ease) vt-fade-in; }
+
+/* Leak guard for the homepage layout*/
+
+html:has(.titleheading),
+html:has(.header__titleblock) {
+  font-size: 16px;
+}
+
+:where(body:has(.titleheading), body:has(.header__titleblock)) h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+:where(body:has(.titleheading), body:has(.header__titleblock)) h2 {
+  font-size: 1.5em;
+  margin: 0.83em 0;
+}
+
+:where(body:has(.titleheading), body:has(.header__titleblock)) h3 {
+  font-size: 1.17em;
+  margin: 1em 0;
+}
+
+body:has(.titleheading) h1, body:has(.header__titleblock) h1,
+body:has(.titleheading) h2, body:has(.header__titleblock) h2,
+body:has(.titleheading) h3, body:has(.header__titleblock) h3,
+body:has(.titleheading) h4, body:has(.header__titleblock) h4,
+body:has(.titleheading) h5, body:has(.header__titleblock) h5,
+body:has(.titleheading) h6, body:has(.header__titleblock) h6 {
+  font-weight: bold;
+}
