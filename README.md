@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="./docs/assets/dlsu-seal.png" alt="De La Salle University Seal" width="130" />
-
 # Silicon Minds: The Evolution of the Mobile Microprocessor
 ### CSARCH2, Term 3 A.Y. 2025-2026
 **De La Salle University - Manila**
